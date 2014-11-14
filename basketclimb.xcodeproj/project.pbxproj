@@ -86,8 +86,6 @@
 		4FFF88B51A12A11800283B80 /* basketclimb */ = {
 			isa = PBXGroup;
 			children = (
-				4FFF88BA1A12A11800283B80 /* AppDelegate.h */,
-				4FFF88BB1A12A11800283B80 /* AppDelegate.m */,
 				4FFF88BD1A12A11800283B80 /* GameScene.h */,
 				4FFF88BE1A12A11800283B80 /* GameScene.m */,
 				4FFF88C01A12A11800283B80 /* GameScene.sks */,
@@ -104,6 +102,8 @@
 		4FFF88B61A12A11800283B80 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4FFF88BA1A12A11800283B80 /* AppDelegate.h */,
+				4FFF88BB1A12A11800283B80 /* AppDelegate.m */,
 				4FFF88B71A12A11800283B80 /* Info.plist */,
 				4FFF88B81A12A11800283B80 /* main.m */,
 			);
@@ -422,6 +422,7 @@
 				4FFF88DD1A12A11900283B80 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4FFF88DE1A12A11900283B80 /* Build configuration list for PBXNativeTarget "basketclimbTests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +431,7 @@
 				4FFF88E01A12A11900283B80 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
