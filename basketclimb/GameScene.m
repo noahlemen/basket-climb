@@ -55,44 +55,41 @@ const float FORCE_MULT = .2;
     // offset will need to be circular, remember to use RMS if needed - also subtract that offset from the length of the indicator?
     // ideally if touching at or less than minimal magnitude, no lines are shown
     
-    if ([self childNodeWithName:@"ball"].physicsBody.resting){
-        [touchline removeFromParent];
-        [touchline2 removeFromParent];
-        
-        CGMutablePathRef pathToDraw = CGPathCreateMutable();
-        CGPathMoveToPoint(pathToDraw, NULL, touchBegan.x, touchBegan.y);
-        CGPathAddLineToPoint(pathToDraw, NULL, 2*touchBegan.x-touchPoint.x, 2*touchBegan.y-touchPoint.y);
-        CGPathCloseSubpath(pathToDraw);
-        
-        CGMutablePathRef pathToDraw2 = CGPathCreateMutable();
-        CGPathMoveToPoint(pathToDraw2, NULL, touchBegan.x, touchBegan.y);
-        CGPathAddLineToPoint(pathToDraw2, NULL, touchPoint.x, touchPoint.y);
-        CGPathCloseSubpath(pathToDraw2);
-        
-        touchline = [SKShapeNode node];
-        touchline.lineWidth = 3;
-        touchline.path = pathToDraw;
-        CGPathRelease(pathToDraw);
-        [touchline setStrokeColor:[UIColor whiteColor]];
-        [self addChild:touchline];
-        
-        touchline2 = [SKShapeNode node];
-        touchline2.path = pathToDraw2;
-        CGPathRelease(pathToDraw2);
-        [touchline2 setStrokeColor:[UIColor colorWithWhite:1 alpha:.5]];
-        [self addChild:touchline2];
-    }
+
+    [touchline removeFromParent];
+    [touchline2 removeFromParent];
+    
+    CGMutablePathRef pathToDraw = CGPathCreateMutable();
+    CGPathMoveToPoint(pathToDraw, NULL, touchBegan.x, touchBegan.y);
+    CGPathAddLineToPoint(pathToDraw, NULL, 2*touchBegan.x-touchPoint.x, 2*touchBegan.y-touchPoint.y);
+    CGPathCloseSubpath(pathToDraw);
+    
+    CGMutablePathRef pathToDraw2 = CGPathCreateMutable();
+    CGPathMoveToPoint(pathToDraw2, NULL, touchBegan.x, touchBegan.y);
+    CGPathAddLineToPoint(pathToDraw2, NULL, touchPoint.x, touchPoint.y);
+    CGPathCloseSubpath(pathToDraw2);
+    
+    touchline = [SKShapeNode node];
+    touchline.lineWidth = 3;
+    touchline.path = pathToDraw;
+    CGPathRelease(pathToDraw);
+    [touchline setStrokeColor:[UIColor whiteColor]];
+    [self addChild:touchline];
+    
+    touchline2 = [SKShapeNode node];
+    touchline2.path = pathToDraw2;
+    CGPathRelease(pathToDraw2);
+    [touchline2 setStrokeColor:[UIColor colorWithWhite:1 alpha:.5]];
+    [self addChild:touchline2];
     
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    if ([self childNodeWithName:@"ball"].physicsBody.resting){
-        [touchline removeFromParent];
-        [touchline2 removeFromParent];
-        UITouch *touch = [touches anyObject];
-        touchEnd = [touch locationInNode:self];
-        [[self childNodeWithName:@"ball"].physicsBody applyForce:CGVectorMake((touchBegan.x-touchEnd.x)*FORCE_MULT, (touchBegan.y-touchEnd.y)*FORCE_MULT)];
-    }
+    [touchline removeFromParent];
+    [touchline2 removeFromParent];
+    UITouch *touch = [touches anyObject];
+    touchEnd = [touch locationInNode:self];
+    [[self childNodeWithName:@"ball"].physicsBody applyForce:CGVectorMake((touchBegan.x-touchEnd.x)*FORCE_MULT, (touchBegan.y-touchEnd.y)*FORCE_MULT)];
     
 }
 
