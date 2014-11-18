@@ -36,9 +36,6 @@ const int FORCE_MULT = 20;
     [self addChild:ball];
     
     ball.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:ball.frame.size.width/2];
-    
-
-    
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -47,8 +44,6 @@ const int FORCE_MULT = 20;
     UITouch *touch = [touches anyObject];
     touchBegan = [touch locationInNode:self];
     
-    
-    
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -56,6 +51,8 @@ const int FORCE_MULT = 20;
     CGPoint touchPoint = [touch locationInNode:self];
     
     // TODO: establish minimum magnitude of toss, offset line indicators from touch point by that amount ?
+    // offset will need to be circular, remember to use RMS if needed - also subtract that offset from the length of the indicator?
+    // ideally if touching at or less than minimal magnitude, no lines are shown
     
     [touchline removeFromParent];
     [touchline2 removeFromParent];
@@ -82,8 +79,6 @@ const int FORCE_MULT = 20;
     CGPathRelease(pathToDraw2);
     [touchline2 setStrokeColor:[UIColor colorWithWhite:1 alpha:.2]];
     [self addChild:touchline2];
-    
-    
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
