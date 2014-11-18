@@ -7,7 +7,7 @@
 //
 
 #import "GameScene.h"
-const float FORCE_MULT = 30.0;
+const float FORCE_MULT = 20.0;
 const float MIN_INPUT = 35.0;
 
 @implementation GameScene{
@@ -59,12 +59,16 @@ const float MIN_INPUT = 35.0;
 
     [touchline removeFromParent];
     [touchline2 removeFromParent];
+    [[self childNodeWithName:@"arrow"] removeFromParent];
+    
     
     if ([self distanceFrom:touchBegan to:touchPoint] > MIN_INPUT){
         
+        SKSpriteNode *arrow = [SKSpriteNode spriteNodeWithImageNamed:@"arrow"];
+        
         GLKVector2 direction = GLKVector2Normalize(GLKVector2Make(touchPoint.x - touchBegan.x, touchPoint.y - touchBegan.y));
-        GLKVector2 frontLineBegin =  GLKVector2Subtract(GLKVector2Make(touchBegan.x, touchBegan.y), GLKVector2MultiplyScalar(direction, MIN_INPUT));
-        GLKVector2 backLineBegin = GLKVector2Add(GLKVector2Make(touchBegan.x, touchBegan.y), GLKVector2MultiplyScalar(direction, MIN_INPUT));
+        GLKVector2 frontLineBegin =  GLKVector2Subtract(GLKVector2Make(touchBegan.x, touchBegan.y), GLKVector2MultiplyScalar(direction, MIN_INPUT-20));
+        GLKVector2 backLineBegin = GLKVector2Add(GLKVector2Make(touchBegan.x, touchBegan.y), GLKVector2MultiplyScalar(direction, MIN_INPUT-20));
         
         CGMutablePathRef pathToDraw = CGPathCreateMutable();
         CGPathMoveToPoint(pathToDraw, NULL, frontLineBegin.x, frontLineBegin.y);
@@ -88,6 +92,15 @@ const float MIN_INPUT = 35.0;
         CGPathRelease(pathToDraw2);
         [touchline2 setStrokeColor:[UIColor colorWithWhite:0 alpha:.1]];
         [self addChild:touchline2];
+        
+        arrow.position = CGPointMake(2*touchBegan.x-touchPoint.x,
+                                    2*touchBegan.y-touchPoint.y);
+        arrow.xScale = .5f;
+        arrow.yScale = .5f;
+        arrow.zRotation = atan2f(direction.y, direction.x);
+        
+        arrow.name = @"arrow";
+        [self addChild:arrow];
     }
 }
 
@@ -95,6 +108,7 @@ const float MIN_INPUT = 35.0;
     
     [touchline removeFromParent];
     [touchline2 removeFromParent];
+    [[self childNodeWithName:@"arrow"] removeFromParent];
     
     UITouch *touch = [touches anyObject];
     touchEnd = [touch locationInNode:self];
