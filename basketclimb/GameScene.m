@@ -7,8 +7,8 @@
 //
 
 #import "GameScene.h"
-const float FORCE_MULT = .2;
-const float MIN_INPUT = 40.0;
+const float FORCE_MULT = 30.0;
+const float MIN_INPUT = 35.0;
 
 @implementation GameScene{
     CGPoint touchBegan;
@@ -36,7 +36,7 @@ const float MIN_INPUT = 40.0;
                                 CGRectGetMidY(self.frame));
     [self addChild:ball];
     
-    ball.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:ball.frame.size.width/2];
+    ball.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:ball.frame.size.width/2.5];
     ball.physicsBody.allowsRotation = NO;
 }
 
@@ -77,16 +77,16 @@ const float MIN_INPUT = 40.0;
         CGPathCloseSubpath(pathToDraw2);
         
         touchline = [SKShapeNode node];
-        touchline.lineWidth = 3;
+        touchline.lineWidth = 1;
         touchline.path = pathToDraw;
         CGPathRelease(pathToDraw);
-        [touchline setStrokeColor:[UIColor whiteColor]];
+        [touchline setStrokeColor:[UIColor blackColor]];
         [self addChild:touchline];
         
         touchline2 = [SKShapeNode node];
         touchline2.path = pathToDraw2;
         CGPathRelease(pathToDraw2);
-        [touchline2 setStrokeColor:[UIColor colorWithWhite:1 alpha:.5]];
+        [touchline2 setStrokeColor:[UIColor colorWithWhite:0 alpha:.1]];
         [self addChild:touchline2];
     }
 }
@@ -100,7 +100,9 @@ const float MIN_INPUT = 40.0;
     touchEnd = [touch locationInNode:self];
     
     if ([self distanceFrom:touchBegan to:touchEnd] > MIN_INPUT){
-        [[self childNodeWithName:@"ball"].physicsBody applyForce:CGVectorMake((touchBegan.x-touchEnd.x)*FORCE_MULT, (touchBegan.y-touchEnd.y)*FORCE_MULT)];
+        GLKVector2 direction = GLKVector2Normalize(GLKVector2Make(touchEnd.x - touchBegan.x, touchEnd.y - touchBegan.y));
+        GLKVector2 force = GLKVector2MultiplyScalar(direction, -FORCE_MULT);
+        [[self childNodeWithName:@"ball"].physicsBody applyForce:CGVectorMake(force.x, force.y)];
     }
     
 }
