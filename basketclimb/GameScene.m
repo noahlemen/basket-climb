@@ -7,7 +7,7 @@
 //
 
 #import "GameScene.h"
-const float FORCE_MULT = 20.0;
+const float FORCE_MULT = 0.2;
 const float MIN_INPUT = 35.0;
 
 @implementation GameScene{
@@ -113,9 +113,10 @@ const float MIN_INPUT = 35.0;
     UITouch *touch = [touches anyObject];
     touchEnd = [touch locationInNode:self];
     
-    if ([self distanceFrom:touchBegan to:touchEnd] > MIN_INPUT){
+    float distance = [self distanceFrom:touchBegan to:touchEnd];
+    if (distance > MIN_INPUT){
         GLKVector2 direction = GLKVector2Normalize(GLKVector2Make(touchEnd.x - touchBegan.x, touchEnd.y - touchBegan.y));
-        GLKVector2 force = GLKVector2MultiplyScalar(direction, -FORCE_MULT);
+        GLKVector2 force = GLKVector2MultiplyScalar(direction, FORCE_MULT * -distance);
         [[self childNodeWithName:@"ball"].physicsBody applyForce:CGVectorMake(force.x, force.y)];
     }
     
