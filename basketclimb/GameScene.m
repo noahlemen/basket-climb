@@ -7,13 +7,9 @@
 //
 
 #import "GameScene.h"
-<<<<<<< HEAD
 
-const float FORCE_MULT = .2;
-=======
 const float FORCE_MULT = 0.2;
 const float MIN_INPUT = 35.0;
->>>>>>> b7c12fe1f73c7225e50da091a8be8b513233d031
 
 @implementation GameScene{
     CGPoint touchBegan;
