@@ -7,6 +7,7 @@
 //
 
 #import "GameScene.h"
+
 const float FORCE_MULT = .2;
 
 @implementation GameScene{
@@ -89,7 +90,11 @@ const float FORCE_MULT = .2;
     [touchline2 removeFromParent];
     UITouch *touch = [touches anyObject];
     touchEnd = [touch locationInNode:self];
+    
+    /*  This should be adapted so that it doesn't scale linearly - maybe log?  or input changes less magnitude at really low and high vals */
     [[self childNodeWithName:@"ball"].physicsBody applyForce:CGVectorMake((touchBegan.x-touchEnd.x)*FORCE_MULT, (touchBegan.y-touchEnd.y)*FORCE_MULT)];
+    
+    // TO DO: disable touching until ball stops moving
     
 }
 
