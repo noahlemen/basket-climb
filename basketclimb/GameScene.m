@@ -7,6 +7,7 @@
 //
 
 #import "GameScene.h"
+
 const float FORCE_MULT = 0.2;
 const float MIN_INPUT = 35.0;
 
@@ -119,6 +120,8 @@ const float MIN_INPUT = 35.0;
         GLKVector2 force = GLKVector2MultiplyScalar(direction, FORCE_MULT * -distance);
         [[self childNodeWithName:@"ball"].physicsBody applyForce:CGVectorMake(force.x, force.y)];
     }
+        
+    // TO DO: disable touching until ball stops moving
     
 }
 
