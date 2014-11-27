@@ -16,13 +16,47 @@ const float MIN_INPUT = 35.0;
     CGPoint touchEnd;
     SKShapeNode *touchline;
     SKShapeNode *touchline2;
-    SKColor *wallColor;
+    
 }
 
+-(id)initWithSize:(CGSize)size {
+    if(self = [super initWithSize:size]){
+        // Set background color and gravity
+        self.backgroundColor = [SKColor colorWithRed:0.769 green:0.945 blue:1.0 alpha:1.0];
+        self.physicsWorld.gravity = CGVectorMake(0.0f, -9.8f);
+        
+        // Add node for game world
+        self.world = [SKNode node];
+        
+        // Initialize and set-up the map node
+        self.map = [[Map alloc] init];
+        
+        // Set border (will need to be changed later)
+        SKPhysicsBody* borderBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
+        self.physicsBody = borderBody;
+        self.physicsBody.friction = 0.5f;
+        
+        // Create ball
+        SKSpriteNode *ball = [SKSpriteNode spriteNodeWithImageNamed:@"ball"];
+        ball.xScale = .25;
+        ball.yScale = .25;
+        ball.name = @"ball";
+        ball.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+        [self addChild:ball];
+        ball.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:ball.frame.size.width/2.5];
+        ball.physicsBody.allowsRotation = NO;
+        
+        [self.world addChild:self.map];
+        [self addChild:self.world];
+        
+    }
+    return self;
+}
 
+/*
 -(void)didMoveToView:(SKView *)view {
     //Set wall color, gravity, and backround color
-    wallColor = [SKColor colorWithRed:0.184 green:0.36 blue:0.431 alpha:1.0];
+    SKColor *wallColor = [SKColor colorWithRed:0.184 green:0.36 blue:0.431 alpha:1.0];
     self.physicsWorld.gravity = CGVectorMake(0.0f, -9.8f);
     self.backgroundColor = [SKColor colorWithRed:0.769 green:0.945 blue:1.0 alpha:1.0];
     
@@ -57,13 +91,13 @@ const float MIN_INPUT = 35.0;
     [self addChild:leftWall];
     
     // Right Wall
-    SKShapeNode *rightWall = [SKShapeNode shapeNodeWithRect:CGRectMake(CGRectGetWidth(self.frame) - 10.0f, 0.0f, 10.0f, CGRectGetHeight(self.view.frame))];
-    rightWall.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(CGRectGetWidth(self.frame) - 10.0f, 0.0f, 10.0f, CGRectGetHeight(self.view.frame))];
+    SKShapeNode *rightWall = [SKShapeNode shapeNodeWithRect:CGRectMake(CGRectGetWidth(self.frame) - 10.0f, 0.0f, 10.0f, CGRectGetHeight(self.frame))];
+    rightWall.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(CGRectGetWidth(self.frame) - 10.0f, 0.0f, 10.0f, CGRectGetHeight(self.frame))];
     rightWall.strokeColor = wallColor;
     rightWall.fillColor = wallColor;
     [self addChild:rightWall];
 
-}
+}*/
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */

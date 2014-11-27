@@ -7,7 +7,11 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "Map.h"
 
 @interface GameScene : SKScene
+
+@property (nonatomic) SKNode *world;
+@property (nonatomic) Map *map;
 
 @end
