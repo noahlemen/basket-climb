@@ -16,6 +16,7 @@
 		4FFF88C91A12A11900283B80 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FFF88C81A12A11900283B80 /* Images.xcassets */; };
 		4FFF88CC1A12A11900283B80 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFF88CA1A12A11900283B80 /* LaunchScreen.xib */; };
 		4FFF88D81A12A11900283B80 /* basketclimbTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF88D71A12A11900283B80 /* basketclimbTests.m */; };
+		E24347681A26B9C9007972D4 /* Map.m in Sources */ = {isa = PBXBuildFile; fileRef = E24347671A26B9C9007972D4 /* Map.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,8 @@
 		4FFF88D11A12A11900283B80 /* basketclimbTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = basketclimbTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FFF88D61A12A11900283B80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FFF88D71A12A11900283B80 /* basketclimbTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = basketclimbTests.m; sourceTree = "<group>"; };
+		E24347661A26B9C9007972D4 /* Map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Map.h; sourceTree = "<group>"; };
+		E24347671A26B9C9007972D4 /* Map.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Map.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +94,8 @@
 				4FFF88C01A12A11800283B80 /* GameScene.sks */,
 				4FFF88C21A12A11800283B80 /* GameViewController.h */,
 				4FFF88C31A12A11800283B80 /* GameViewController.m */,
+				E24347661A26B9C9007972D4 /* Map.h */,
+				E24347671A26B9C9007972D4 /* Map.m */,
 				4FFF88C51A12A11800283B80 /* Main.storyboard */,
 				4FFF88C81A12A11900283B80 /* Images.xcassets */,
 				4FFF88CA1A12A11900283B80 /* LaunchScreen.xib */,
@@ -230,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FFF88C41A12A11800283B80 /* GameViewController.m in Sources */,
+				E24347681A26B9C9007972D4 /* Map.m in Sources */,
 				4FFF88BC1A12A11800283B80 /* AppDelegate.m in Sources */,
 				4FFF88BF1A12A11800283B80 /* GameScene.m in Sources */,
 				4FFF88B91A12A11800283B80 /* main.m in Sources */,
@@ -356,8 +362,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = basketclimb/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -367,8 +375,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = basketclimb/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
