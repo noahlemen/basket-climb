@@ -12,6 +12,15 @@
 
 @property (nonatomic) CGSize gridSize;
 @property (nonatomic) CGPoint spawnPoint;
+
+/* creates a path with number of visible "jutting out" points" */
+-(CGMutablePathRef)createPathWithPoints:(int)numPoints
+                        andScreenBounds:(CGRect)screenRect
+                             isLeftWall:(BOOL)leftWall;
+
+/* Releases CGMutabalePathRef resources */
+-(void)releasePath:(CGMutablePathRef)path;
+
 /*
 + (id) mapWithGridSize:(CGSize)gridSize;
 - (id) initWithGridSize:(CGSize)gridSize;
