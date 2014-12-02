@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4FFF88B21A12A11800283B80"
-               BuildableName = "basketclimb.app"
-               BlueprintName = "basketclimb"
-               ReferencedContainer = "container:basketclimb.xcodeproj">
+               BuildableName = "Basket Climb.app"
+               BlueprintName = "Basket Climb"
+               ReferencedContainer = "container:Basket Climb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4FFF88D01A12A11900283B80"
-               BuildableName = "basketclimbTests.xctest"
-               BlueprintName = "basketclimbTests"
-               ReferencedContainer = "container:basketclimb.xcodeproj">
+               BuildableName = "Basket ClimbTests.xctest"
+               BlueprintName = "Basket ClimbTests"
+               ReferencedContainer = "container:Basket Climb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4FFF88D01A12A11900283B80"
-               BuildableName = "basketclimbTests.xctest"
-               BlueprintName = "basketclimbTests"
-               ReferencedContainer = "container:basketclimb.xcodeproj">
+               BuildableName = "Basket ClimbTests.xctest"
+               BlueprintName = "Basket ClimbTests"
+               ReferencedContainer = "container:Basket Climb.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4FFF88B21A12A11800283B80"
-            BuildableName = "basketclimb.app"
-            BlueprintName = "basketclimb"
-            ReferencedContainer = "container:basketclimb.xcodeproj">
+            BuildableName = "Basket Climb.app"
+            BlueprintName = "Basket Climb"
+            ReferencedContainer = "container:Basket Climb.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4FFF88B21A12A11800283B80"
-            BuildableName = "basketclimb.app"
-            BlueprintName = "basketclimb"
-            ReferencedContainer = "container:basketclimb.xcodeproj">
+            BuildableName = "Basket Climb.app"
+            BlueprintName = "Basket Climb"
+            ReferencedContainer = "container:Basket Climb.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4FFF88B21A12A11800283B80"
-            BuildableName = "basketclimb.app"
-            BlueprintName = "basketclimb"
-            ReferencedContainer = "container:basketclimb.xcodeproj">
+            BuildableName = "Basket Climb.app"
+            BlueprintName = "Basket Climb"
+            ReferencedContainer = "container:Basket Climb.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -30,7 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4FFF88B31A12A11800283B80 /* basketclimb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = basketclimb.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FFF88B31A12A11800283B80 /* Basket Climb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Basket Climb.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FFF88B71A12A11800283B80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FFF88B81A12A11800283B80 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4FFF88BA1A12A11800283B80 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -43,7 +43,7 @@
 		4FFF88C61A12A11800283B80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4FFF88C81A12A11900283B80 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4FFF88CB1A12A11900283B80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		4FFF88D11A12A11900283B80 /* basketclimbTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = basketclimbTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FFF88D11A12A11900283B80 /* Basket ClimbTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Basket ClimbTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FFF88D61A12A11900283B80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FFF88D71A12A11900283B80 /* basketclimbTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = basketclimbTests.m; sourceTree = "<group>"; };
 		E24347661A26B9C9007972D4 /* Map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Map.h; sourceTree = "<group>"; };
@@ -80,8 +80,8 @@
 		4FFF88B41A12A11800283B80 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4FFF88B31A12A11800283B80 /* basketclimb.app */,
-				4FFF88D11A12A11900283B80 /* basketclimbTests.xctest */,
+				4FFF88B31A12A11800283B80 /* Basket Climb.app */,
+				4FFF88D11A12A11900283B80 /* Basket ClimbTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,9 +135,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4FFF88B21A12A11800283B80 /* basketclimb */ = {
+		4FFF88B21A12A11800283B80 /* Basket Climb */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4FFF88DB1A12A11900283B80 /* Build configuration list for PBXNativeTarget "basketclimb" */;
+			buildConfigurationList = 4FFF88DB1A12A11900283B80 /* Build configuration list for PBXNativeTarget "Basket Climb" */;
 			buildPhases = (
 				4FFF88AF1A12A11800283B80 /* Sources */,
 				4FFF88B01A12A11800283B80 /* Frameworks */,
@@ -147,14 +147,14 @@
 			);
 			dependencies = (
 			);
-			name = basketclimb;
+			name = "Basket Climb";
 			productName = basketclimb;
-			productReference = 4FFF88B31A12A11800283B80 /* basketclimb.app */;
+			productReference = 4FFF88B31A12A11800283B80 /* Basket Climb.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4FFF88D01A12A11900283B80 /* basketclimbTests */ = {
+		4FFF88D01A12A11900283B80 /* Basket ClimbTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4FFF88DE1A12A11900283B80 /* Build configuration list for PBXNativeTarget "basketclimbTests" */;
+			buildConfigurationList = 4FFF88DE1A12A11900283B80 /* Build configuration list for PBXNativeTarget "Basket ClimbTests" */;
 			buildPhases = (
 				4FFF88CD1A12A11900283B80 /* Sources */,
 				4FFF88CE1A12A11900283B80 /* Frameworks */,
@@ -165,9 +165,9 @@
 			dependencies = (
 				4FFF88D31A12A11900283B80 /* PBXTargetDependency */,
 			);
-			name = basketclimbTests;
+			name = "Basket ClimbTests";
 			productName = basketclimbTests;
-			productReference = 4FFF88D11A12A11900283B80 /* basketclimbTests.xctest */;
+			productReference = 4FFF88D11A12A11900283B80 /* Basket ClimbTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -181,7 +181,7 @@
 				TargetAttributes = {
 					4FFF88B21A12A11800283B80 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = 73VTD9GBL7;
+						DevelopmentTeam = QEC653S2P4;
 					};
 					4FFF88D01A12A11900283B80 = {
 						CreatedOnToolsVersion = 6.1;
@@ -189,7 +189,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4FFF88AE1A12A11800283B80 /* Build configuration list for PBXProject "basketclimb" */;
+			buildConfigurationList = 4FFF88AE1A12A11800283B80 /* Build configuration list for PBXProject "Basket Climb" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -202,8 +202,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4FFF88B21A12A11800283B80 /* basketclimb */,
-				4FFF88D01A12A11900283B80 /* basketclimbTests */,
+				4FFF88B21A12A11800283B80 /* Basket Climb */,
+				4FFF88D01A12A11900283B80 /* Basket ClimbTests */,
 			);
 		};
 /* End PBXProject section */
@@ -255,7 +255,7 @@
 /* Begin PBXTargetDependency section */
 		4FFF88D31A12A11900283B80 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4FFF88B21A12A11800283B80 /* basketclimb */;
+			target = 4FFF88B21A12A11800283B80 /* Basket Climb */;
 			targetProxy = 4FFF88D21A12A11900283B80 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -361,10 +361,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = basketclimb/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Basket Climb";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -374,10 +376,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = basketclimb/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Basket Climb";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -396,8 +400,8 @@
 				);
 				INFOPLIST_FILE = basketclimbTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/basketclimb.app/basketclimb";
+				PRODUCT_NAME = "Basket ClimbTests";
+				TEST_HOST = "";
 			};
 			name = Debug;
 		};
@@ -411,15 +415,15 @@
 				);
 				INFOPLIST_FILE = basketclimbTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/basketclimb.app/basketclimb";
+				PRODUCT_NAME = "Basket ClimbTests";
+				TEST_HOST = "";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4FFF88AE1A12A11800283B80 /* Build configuration list for PBXProject "basketclimb" */ = {
+		4FFF88AE1A12A11800283B80 /* Build configuration list for PBXProject "Basket Climb" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FFF88D91A12A11900283B80 /* Debug */,
@@ -428,7 +432,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4FFF88DB1A12A11900283B80 /* Build configuration list for PBXNativeTarget "basketclimb" */ = {
+		4FFF88DB1A12A11900283B80 /* Build configuration list for PBXNativeTarget "Basket Climb" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FFF88DC1A12A11900283B80 /* Debug */,
@@ -437,7 +441,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4FFF88DE1A12A11900283B80 /* Build configuration list for PBXNativeTarget "basketclimbTests" */ = {
+		4FFF88DE1A12A11900283B80 /* Build configuration list for PBXNativeTarget "Basket ClimbTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FFF88DF1A12A11900283B80 /* Debug */,
