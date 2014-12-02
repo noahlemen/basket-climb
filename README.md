@@ -1,6 +1,6 @@
-ios_final
+Basket Climb
 =========
 
-"Basket Climb" - final project for iOS Programming at NYU, Fall 2014
+"Basket Climb" - a final project for iOS Programming at NYU, Fall 2014
 
-Noah Lemen and Tom Longabaugh
+by Noah Lemen and Tom Longabaugh
