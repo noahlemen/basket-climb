@@ -26,9 +26,9 @@
         wallColor = [SKColor colorWithRed:0.184 green:0.36 blue:0.431 alpha:1.0];
         
         // Set border (will need to be changed later)
-        SKPhysicsBody* borderBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:screenRect];
-        self.physicsBody = borderBody;
-        self.physicsBody.friction = 0.5f;
+//        SKPhysicsBody* borderBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:screenRect];
+//        self.physicsBody = borderBody;
+//        self.physicsBody.friction = 0.5f;
         
         // Bottorm
         SKShapeNode *floor = [SKShapeNode shapeNodeWithRect:CGRectMake(0.0f, 0.0f, CGRectGetWidth(screenRect), 10.0f)];

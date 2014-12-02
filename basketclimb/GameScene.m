@@ -31,11 +31,6 @@ const float MIN_INPUT = 35.0;
         // Initialize and set-up the map node
         self.map = [[Map alloc] init];
         
-        // Set border (will need to be changed later)
-        SKPhysicsBody* borderBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
-        self.physicsBody = borderBody;
-        self.physicsBody.friction = 0.5f;
-        
         // Create ball
         SKSpriteNode *ball = [SKSpriteNode spriteNodeWithImageNamed:@"ball"];
         ball.xScale = .25;
