@@ -17,7 +17,6 @@ const float RESTING_SPEED = 0.000000000001;
     CGPoint touchEnd;
     SKShapeNode *touchline;
     SKShapeNode *touchline2;
-    
 }
 
 -(id)initWithSize:(CGSize)size {
@@ -143,7 +142,21 @@ const float RESTING_SPEED = 0.000000000001;
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
-    
+    if ([self ballIsResting]){
+        // go above ball if its resting
+        float ydistance = [self.world childNodeWithName:@"ball"].position.y - self.camera.position.y + self.frame.size.height*.45;
+        self.camera.position = CGPointMake(self.camera.position.x, (float)MAX(self.camera.position.y + ydistance *.5, self.frame.size.height/2));
+    }else{
+        float ydistance = [self.world childNodeWithName:@"ball"].position.y - self.camera.position.y;
+        if (fabsf(ydistance) > self.frame.size.height/3){
+            self.camera.position = CGPointMake(self.camera.position.x, (float)MAX(self.camera.position.y + ydistance *.05, self.frame.size.height/2));
+        }
+    }
+
+}
+
+-(void)didFinishUpdate{
+    [self centerOnNode: self.camera];
 }
 
 -(float)distanceFrom:(CGPoint)from to:(CGPoint)to{
@@ -153,18 +166,7 @@ const float RESTING_SPEED = 0.000000000001;
 }
 
 -(void)didSimulatePhysics{
-    if ([self ballIsResting]){
-        // go above ball if its resting
-        float ydistance = [self.world childNodeWithName:@"ball"].position.y - self.camera.position.y + self.frame.size.height*.45;
-        self.camera.position = CGPointMake(self.camera.position.x, (float)MAX(self.camera.position.y + ydistance *.5, self.frame.size.height/2));
-        [self centerOnNode: self.camera];
-    }else{
-        float ydistance = [self.world childNodeWithName:@"ball"].position.y - self.camera.position.y;
-        if (fabsf(ydistance) > self.frame.size.height/3){
-            self.camera.position = CGPointMake(self.camera.position.x, (float)MAX(self.camera.position.y + ydistance *.05, self.frame.size.height/2));
-            [self centerOnNode: self.camera];
-        }
-    }
+    
 }
 
 -(bool)ballIsResting{
