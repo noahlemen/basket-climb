@@ -14,5 +14,6 @@
 @property (nonatomic) SKNode *world;
 @property (nonatomic) Map *map;
 @property (nonatomic) SKNode *camera;
+@property (nonatomic) SKSpriteNode *ball;
 
 @end

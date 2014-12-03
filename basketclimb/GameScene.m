@@ -35,14 +35,14 @@ const float RESTING_SPEED = 0.000000000001;
         self.camera.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
         
         // Create ball
-        SKSpriteNode *ball = [SKSpriteNode spriteNodeWithImageNamed:@"ball"];
-        ball.xScale = .25;
-        ball.yScale = .25;
-        ball.name = @"ball";
-        ball.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
-        [self.world addChild:ball];
-        ball.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:ball.frame.size.width/2.5];
-        ball.physicsBody.allowsRotation = NO;
+        self.ball = [SKSpriteNode spriteNodeWithImageNamed:@"ball"];
+        self.ball.xScale = .25;
+        self.ball.yScale = .25;
+        self.ball.name = @"ball";
+        self.ball.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+        [self.world addChild:self.ball];
+        self.ball.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.ball.frame.size.width/2.5];
+        self.ball.physicsBody.allowsRotation = NO;
         
         [self.world addChild:self.map];
         [self.world addChild:self.camera];
@@ -133,7 +133,7 @@ const float RESTING_SPEED = 0.000000000001;
     if (distance > MIN_INPUT){
         GLKVector2 direction = GLKVector2Normalize(GLKVector2Make(touchEnd.x - touchBegan.x, touchEnd.y - touchBegan.y));
         GLKVector2 force = GLKVector2MultiplyScalar(direction, FORCE_MULT * -distance);
-        [[self.world childNodeWithName:@"ball"].physicsBody applyForce:CGVectorMake(force.x, force.y)];
+        [self.ball.physicsBody applyForce:CGVectorMake(force.x, force.y)];
     }
         
     // TO DO: disable touching until ball stops moving
@@ -144,10 +144,10 @@ const float RESTING_SPEED = 0.000000000001;
     /* Called before each frame is rendered */
     if ([self ballIsResting]){
         // go above ball if its resting
-        float ydistance = [self.world childNodeWithName:@"ball"].position.y - self.camera.position.y + self.frame.size.height*.45;
-        self.camera.position = CGPointMake(self.camera.position.x, (float)MAX(self.camera.position.y + ydistance *.5, self.frame.size.height/2));
+        float ydistance = self.ball.position.y - self.camera.position.y + self.frame.size.height*.45;
+        self.camera.position = CGPointMake(self.camera.position.x, (float)MAX(self.camera.position.y + ydistance *.1, self.frame.size.height/2));
     }else{
-        float ydistance = [self.world childNodeWithName:@"ball"].position.y - self.camera.position.y;
+        float ydistance = self.ball.position.y - self.camera.position.y;
         if (fabsf(ydistance) > self.frame.size.height/3){
             self.camera.position = CGPointMake(self.camera.position.x, (float)MAX(self.camera.position.y + ydistance *.05, self.frame.size.height/2));
         }
@@ -170,7 +170,7 @@ const float RESTING_SPEED = 0.000000000001;
 }
 
 -(bool)ballIsResting{
-    CGVector v = [self.world childNodeWithName:@"ball"].physicsBody.velocity;
+    CGVector v = self.ball.physicsBody.velocity;
     float speed = sqrtf(v.dx*v.dx+v.dy*v.dy);
     if (speed < RESTING_SPEED){
         return YES;
