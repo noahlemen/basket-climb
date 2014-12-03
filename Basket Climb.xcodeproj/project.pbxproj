@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F1145AB1A2E5E5600AFF728 /* easing.c in Sources */ = {isa = PBXBuildFile; fileRef = 4F1145A51A2E5E5600AFF728 /* easing.c */; };
+		4F1145AC1A2E5E5600AFF728 /* SKEase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1145A91A2E5E5600AFF728 /* SKEase.m */; };
+		4F1145DA1A2E5E9E00AFF728 /* SKAction+SKTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1145CA1A2E5E9E00AFF728 /* SKAction+SKTExtras.m */; };
+		4F1145DB1A2E5E9E00AFF728 /* SKAction+SKTSpecialEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1145CC1A2E5E9E00AFF728 /* SKAction+SKTSpecialEffects.m */; };
+		4F1145DC1A2E5E9E00AFF728 /* SKEmitterNode+SKTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1145CE1A2E5E9E00AFF728 /* SKEmitterNode+SKTExtras.m */; };
+		4F1145DD1A2E5E9E00AFF728 /* SKNode+SKTDebugDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1145D01A2E5E9E00AFF728 /* SKNode+SKTDebugDraw.m */; };
+		4F1145DE1A2E5E9E00AFF728 /* SKNode+SKTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1145D21A2E5E9E00AFF728 /* SKNode+SKTExtras.m */; };
+		4F1145DF1A2E5E9E00AFF728 /* SKTAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1145D41A2E5E9E00AFF728 /* SKTAudio.m */; };
+		4F1145E01A2E5E9E00AFF728 /* SKTEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1145D61A2E5E9E00AFF728 /* SKTEffects.m */; };
+		4F1145E11A2E5E9E00AFF728 /* SKTTimingFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1145D81A2E5E9E00AFF728 /* SKTTimingFunctions.m */; };
 		4FFF88B91A12A11800283B80 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF88B81A12A11800283B80 /* main.m */; };
 		4FFF88BC1A12A11800283B80 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF88BB1A12A11800283B80 /* AppDelegate.m */; };
 		4FFF88BF1A12A11800283B80 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF88BE1A12A11800283B80 /* GameScene.m */; };
@@ -31,6 +41,29 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F1145A51A2E5E5600AFF728 /* easing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = easing.c; sourceTree = "<group>"; };
+		4F1145A61A2E5E5600AFF728 /* easing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = easing.h; sourceTree = "<group>"; };
+		4F1145A71A2E5E5600AFF728 /* EasingDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasingDeclarations.h; sourceTree = "<group>"; };
+		4F1145A81A2E5E5600AFF728 /* SKEase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKEase.h; sourceTree = "<group>"; };
+		4F1145A91A2E5E5600AFF728 /* SKEase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKEase.m; sourceTree = "<group>"; };
+		4F1145AA1A2E5E5600AFF728 /* SpriteKit-Easing-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpriteKit-Easing-Prefix.pch"; sourceTree = "<group>"; };
+		4F1145C91A2E5E9E00AFF728 /* SKAction+SKTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKAction+SKTExtras.h"; sourceTree = "<group>"; };
+		4F1145CA1A2E5E9E00AFF728 /* SKAction+SKTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKAction+SKTExtras.m"; sourceTree = "<group>"; };
+		4F1145CB1A2E5E9E00AFF728 /* SKAction+SKTSpecialEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKAction+SKTSpecialEffects.h"; sourceTree = "<group>"; };
+		4F1145CC1A2E5E9E00AFF728 /* SKAction+SKTSpecialEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKAction+SKTSpecialEffects.m"; sourceTree = "<group>"; };
+		4F1145CD1A2E5E9E00AFF728 /* SKEmitterNode+SKTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKEmitterNode+SKTExtras.h"; sourceTree = "<group>"; };
+		4F1145CE1A2E5E9E00AFF728 /* SKEmitterNode+SKTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKEmitterNode+SKTExtras.m"; sourceTree = "<group>"; };
+		4F1145CF1A2E5E9E00AFF728 /* SKNode+SKTDebugDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKNode+SKTDebugDraw.h"; sourceTree = "<group>"; };
+		4F1145D01A2E5E9E00AFF728 /* SKNode+SKTDebugDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKNode+SKTDebugDraw.m"; sourceTree = "<group>"; };
+		4F1145D11A2E5E9E00AFF728 /* SKNode+SKTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKNode+SKTExtras.h"; sourceTree = "<group>"; };
+		4F1145D21A2E5E9E00AFF728 /* SKNode+SKTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKNode+SKTExtras.m"; sourceTree = "<group>"; };
+		4F1145D31A2E5E9E00AFF728 /* SKTAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTAudio.h; sourceTree = "<group>"; };
+		4F1145D41A2E5E9E00AFF728 /* SKTAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTAudio.m; sourceTree = "<group>"; };
+		4F1145D51A2E5E9E00AFF728 /* SKTEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTEffects.h; sourceTree = "<group>"; };
+		4F1145D61A2E5E9E00AFF728 /* SKTEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTEffects.m; sourceTree = "<group>"; };
+		4F1145D71A2E5E9E00AFF728 /* SKTTimingFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTTimingFunctions.h; sourceTree = "<group>"; };
+		4F1145D81A2E5E9E00AFF728 /* SKTTimingFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTTimingFunctions.m; sourceTree = "<group>"; };
+		4F1145D91A2E5E9E00AFF728 /* SKTUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTUtils.h; sourceTree = "<group>"; };
 		4FFF88B31A12A11800283B80 /* Basket Climb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Basket Climb.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FFF88B71A12A11800283B80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FFF88B81A12A11800283B80 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -71,6 +104,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F1145A41A2E5E4300AFF728 /* SpriteKit-Easing */ = {
+			isa = PBXGroup;
+			children = (
+				4F1145A51A2E5E5600AFF728 /* easing.c */,
+				4F1145A61A2E5E5600AFF728 /* easing.h */,
+				4F1145AA1A2E5E5600AFF728 /* SpriteKit-Easing-Prefix.pch */,
+				4F1145A71A2E5E5600AFF728 /* EasingDeclarations.h */,
+				4F1145A81A2E5E5600AFF728 /* SKEase.h */,
+				4F1145A91A2E5E5600AFF728 /* SKEase.m */,
+			);
+			name = "SpriteKit-Easing";
+			sourceTree = "<group>";
+		};
+		4F1145AF1A2E5E8100AFF728 /* SKTUtils */ = {
+			isa = PBXGroup;
+			children = (
+				4F1145C91A2E5E9E00AFF728 /* SKAction+SKTExtras.h */,
+				4F1145CA1A2E5E9E00AFF728 /* SKAction+SKTExtras.m */,
+				4F1145CB1A2E5E9E00AFF728 /* SKAction+SKTSpecialEffects.h */,
+				4F1145CC1A2E5E9E00AFF728 /* SKAction+SKTSpecialEffects.m */,
+				4F1145CD1A2E5E9E00AFF728 /* SKEmitterNode+SKTExtras.h */,
+				4F1145CE1A2E5E9E00AFF728 /* SKEmitterNode+SKTExtras.m */,
+				4F1145CF1A2E5E9E00AFF728 /* SKNode+SKTDebugDraw.h */,
+				4F1145D01A2E5E9E00AFF728 /* SKNode+SKTDebugDraw.m */,
+				4F1145D11A2E5E9E00AFF728 /* SKNode+SKTExtras.h */,
+				4F1145D21A2E5E9E00AFF728 /* SKNode+SKTExtras.m */,
+				4F1145D31A2E5E9E00AFF728 /* SKTAudio.h */,
+				4F1145D41A2E5E9E00AFF728 /* SKTAudio.m */,
+				4F1145D51A2E5E9E00AFF728 /* SKTEffects.h */,
+				4F1145D61A2E5E9E00AFF728 /* SKTEffects.m */,
+				4F1145D71A2E5E9E00AFF728 /* SKTTimingFunctions.h */,
+				4F1145D81A2E5E9E00AFF728 /* SKTTimingFunctions.m */,
+				4F1145D91A2E5E9E00AFF728 /* SKTUtils.h */,
+			);
+			name = SKTUtils;
+			sourceTree = "<group>";
+		};
 		4FFF88AA1A12A11800283B80 = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +162,8 @@
 		4FFF88B51A12A11800283B80 /* basketclimb */ = {
 			isa = PBXGroup;
 			children = (
+				4F1145AF1A2E5E8100AFF728 /* SKTUtils */,
+				4F1145A41A2E5E4300AFF728 /* SpriteKit-Easing */,
 				4FFF88BD1A12A11800283B80 /* GameScene.h */,
 				4FFF88BE1A12A11800283B80 /* GameScene.m */,
 				4FFF88C01A12A11800283B80 /* GameScene.sks */,
@@ -239,13 +311,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F1145AB1A2E5E5600AFF728 /* easing.c in Sources */,
+				4F1145E01A2E5E9E00AFF728 /* SKTEffects.m in Sources */,
+				4F1145DC1A2E5E9E00AFF728 /* SKEmitterNode+SKTExtras.m in Sources */,
+				4F1145E11A2E5E9E00AFF728 /* SKTTimingFunctions.m in Sources */,
+				4F1145DD1A2E5E9E00AFF728 /* SKNode+SKTDebugDraw.m in Sources */,
 				4FFF88C41A12A11800283B80 /* GameViewController.m in Sources */,
 				E24347681A26B9C9007972D4 /* Map.m in Sources */,
 				4FFF88BC1A12A11800283B80 /* AppDelegate.m in Sources */,
+				4F1145DF1A2E5E9E00AFF728 /* SKTAudio.m in Sources */,
 				4FFF88BF1A12A11800283B80 /* GameScene.m in Sources */,
+				4F1145DB1A2E5E9E00AFF728 /* SKAction+SKTSpecialEffects.m in Sources */,
+				4F1145DE1A2E5E9E00AFF728 /* SKNode+SKTExtras.m in Sources */,
+				4F1145AC1A2E5E5600AFF728 /* SKEase.m in Sources */,
 				4FFF88B91A12A11800283B80 /* main.m in Sources */,
-				E294CE351A2E5C0E0006F3DF /* Basket.m in Sources */,
-			);
+				4F1145DA1A2E5E9E00AFF728 /* SKAction+SKTExtras.m in Sources */,
+
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4FFF88CD1A12A11900283B80 /* Sources */ = {
@@ -366,6 +447,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = basketclimb/Info.plist;
@@ -373,6 +455,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Basket Climb";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "basketclimb/Basket Climb-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -381,6 +465,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = basketclimb/Info.plist;
@@ -388,6 +473,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Basket Climb";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "basketclimb/Basket Climb-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -396,6 +482,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -415,6 +502,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

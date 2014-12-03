@@ -13,5 +13,6 @@
 
 @property (nonatomic) SKNode *world;
 @property (nonatomic) Map *map;
+@property (nonatomic) SKNode *camera;
 
 @end
