@@ -53,9 +53,13 @@
         rightWall.fillColor = wallColor;
         [self addChild:rightWall];
         
-        Basket *aBasket = [Basket createBasketOnLeft:YES withColor:wallColor andAngle:0 andSize:2];
-        aBasket.position = CGPointMake(0.0f, CGRectGetMidY(screenRect));
-        [self addChild:aBasket];
+        Basket *firstBasket = [Basket createBasketOnLeft:YES withColor:wallColor andAngle:0 andSize:1.5];
+        firstBasket.position = CGPointMake(0.0f, CGRectGetMidY(screenRect));
+        [self addChild:firstBasket];
+        
+        Basket *secondBasket = [Basket createBasketOnLeft:NO withColor:wallColor andAngle:0 andSize:1.5];
+        secondBasket.position = CGPointMake(CGRectGetWidth(screenRect), CGRectGetMidY(screenRect)+250);
+        [self addChild:secondBasket];
         
     }
     return self;
