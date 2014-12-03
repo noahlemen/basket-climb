@@ -12,58 +12,47 @@
 @synthesize bottom;
 @synthesize side;
 
-/*
--(id) init
++(Basket*)createBasketOnLeft:(BOOL)leftSide
+                   withColor:(SKColor*)color
+                    andAngle:(CGFloat)angle
+                     andSize:(CGFloat)size
+{
+    return [[Basket alloc] initBasketOnLeft:leftSide withColor:color andAngle:angle andSize:size];
+}
+
+-(Basket*)initBasketOnLeft:(BOOL)leftSide
+                 withColor:(SKColor*)color
+                  andAngle:(CGFloat)angle
+                   andSize:(CGFloat)size
 {
     if (self = [super init]) {
-        
-        //set basket color
-        basketColor = [SKColor colorWithRed:0.184 green:0.36 blue:0.431 alpha:1.0];
-        
         // Bottom
-        bottom = [SKShapeNode shapeNodeWithRect:CGRectMake(0.0f, 0.0f, 30.0f, 5.0f)];
-        bottom.fillColor = basketColor;
-        bottom.strokeColor = basketColor;
+        bottom = [SKShapeNode node];
+        bottom.path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, 30*size, 10)].CGPath;
+        bottom.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(0, 0, 30*size, 10)];
+        bottom.physicsBody.dynamic = NO;
+        bottom.fillColor = color;
+        bottom.strokeColor = color;
+        [self addChild:bottom];
         
         // Side
         side = [SKShapeNode node];
-        side.fillColor = basketColor;
-        side.strokeColor = basketColor;
-        
-        
+        if(leftSide) {
+            side.path = [UIBezierPath bezierPathWithRect:CGRectMake(30*size, 0, 10, 30)].CGPath;
+            side.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(30*size, 0, 10, 30)];
+        }
+        else { // right side
+            side.path = [UIBezierPath bezierPathWithRect:CGRectMake(0*size, 0, 10, 30)].CGPath;
+            side.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(0*size, 0, 10, 30)];
+        }
+        side.physicsBody.dynamic = NO;
+        side.fillColor = color;
+        side.strokeColor = color;
+        [self addChild:side];
+
     }
+
     return self;
-}*/
-
--(Basket*)createBasketOnSide:(BOOL)leftSide
-                  withColor:(SKColor*)color
-                   andAngle:(CGFloat)angle
-                    andSize:(CGFloat)size
-{
-    Basket *theBasket = [[Basket alloc] init];
-    theBasket.bottom = [SKShapeNode shapeNodeWithRect:CGRectMake(0.0f, 0.0f, 50.0f*size, 5.0f*size)];
-    theBasket.bottom.fillColor = color;
-    theBasket.bottom.strokeColor = color;
-    
-    theBasket.side.fillColor = color;
-    theBasket.side.strokeColor = color;
-    if (leftSide) {
-        theBasket.side = [SKShapeNode shapeNodeWithRect:CGRectMake(50.0f, 0.0f, 5.0f*size, 20.0f*size)];
-    }
-    else {
-        theBasket.side = [SKShapeNode shapeNodeWithRect:CGRectMake(0.0f, 0.0f, 5.0f*size, 20.0f*size)];
-    }
-    return theBasket;
 }
-
-/*
--(void)setBasketColor:(SKColor*)color
-{
-    bottom.fillColor = color;
-    bottom.strokeColor = color;
-    side.fillColor = color;
-    side.strokeColor = color;
-}*/
-
 
 @end

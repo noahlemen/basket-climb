@@ -27,7 +27,7 @@
 		4FFF88CC1A12A11900283B80 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FFF88CA1A12A11900283B80 /* LaunchScreen.xib */; };
 		4FFF88D81A12A11900283B80 /* basketclimbTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF88D71A12A11900283B80 /* basketclimbTests.m */; };
 		E24347681A26B9C9007972D4 /* Map.m in Sources */ = {isa = PBXBuildFile; fileRef = E24347671A26B9C9007972D4 /* Map.m */; };
-		E294CE351A2E5C0E0006F3DF /* Basket.m in Sources */ = {isa = PBXBuildFile; fileRef = E294CE341A2E5C0E0006F3DF /* Basket.m */; };
+		E253B63E1A2ED69000C5F743 /* Basket.m in Sources */ = {isa = PBXBuildFile; fileRef = E253B63D1A2ED69000C5F743 /* Basket.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,8 +82,8 @@
 		4FFF88D71A12A11900283B80 /* basketclimbTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = basketclimbTests.m; sourceTree = "<group>"; };
 		E24347661A26B9C9007972D4 /* Map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Map.h; sourceTree = "<group>"; };
 		E24347671A26B9C9007972D4 /* Map.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Map.m; sourceTree = "<group>"; };
-		E294CE331A2E5C0E0006F3DF /* Basket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Basket.h; sourceTree = "<group>"; };
-		E294CE341A2E5C0E0006F3DF /* Basket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Basket.m; sourceTree = "<group>"; };
+		E253B63C1A2ED69000C5F743 /* Basket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Basket.h; sourceTree = "<group>"; };
+		E253B63D1A2ED69000C5F743 /* Basket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Basket.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,8 +171,8 @@
 				4FFF88C31A12A11800283B80 /* GameViewController.m */,
 				E24347661A26B9C9007972D4 /* Map.h */,
 				E24347671A26B9C9007972D4 /* Map.m */,
-				E294CE331A2E5C0E0006F3DF /* Basket.h */,
-				E294CE341A2E5C0E0006F3DF /* Basket.m */,
+				E253B63C1A2ED69000C5F743 /* Basket.h */,
+				E253B63D1A2ED69000C5F743 /* Basket.m */,
 				4FFF88C51A12A11800283B80 /* Main.storyboard */,
 				4FFF88C81A12A11900283B80 /* Images.xcassets */,
 				4FFF88CA1A12A11900283B80 /* LaunchScreen.xib */,
@@ -324,9 +324,10 @@
 				4F1145DB1A2E5E9E00AFF728 /* SKAction+SKTSpecialEffects.m in Sources */,
 				4F1145DE1A2E5E9E00AFF728 /* SKNode+SKTExtras.m in Sources */,
 				4F1145AC1A2E5E5600AFF728 /* SKEase.m in Sources */,
+				E253B63E1A2ED69000C5F743 /* Basket.m in Sources */,
 				4FFF88B91A12A11800283B80 /* main.m in Sources */,
 				4F1145DA1A2E5E9E00AFF728 /* SKAction+SKTExtras.m in Sources */,
-
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4FFF88CD1A12A11900283B80 /* Sources */ = {

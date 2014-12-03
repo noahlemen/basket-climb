@@ -11,15 +11,18 @@
 
 @interface Basket : SKNode
 
-@property (nonatomic, assign) int wallSide; // 0 is left, 1, is right.
-@property (nonatomic, assign) CGFloat size;
+@property (nonatomic) SKShapeNode *bottom;
+@property (nonatomic) SKShapeNode *side;
 
-@property (nonatomic, assign) SKShapeNode *bottom;
-@property (nonatomic, assign) SKShapeNode *side;
+/* Class constructor */
++(Basket*)createBasketOnLeft:(BOOL)leftSide
+             withColor:(SKColor*)color
+              andAngle:(CGFloat)angle
+               andSize:(CGFloat)size;
 
-
--(Basket*)createBasketOnSide:(BOOL)leftSide
-                   withColor:(SKColor*)color
-                    andAngle:(CGFloat)angle
-                     andSize:(CGFloat)size;
+/* Initializes basket on specific side */
+-(Basket*)initBasketOnLeft:(BOOL)leftSide
+                 withColor:(SKColor*)color
+                  andAngle:(CGFloat)angle
+                   andSize:(CGFloat)size;
 @end

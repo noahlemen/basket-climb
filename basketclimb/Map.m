@@ -8,6 +8,7 @@
 
 #import "Map.h"
 #import "GameScene.h"
+#import "Basket.h"
 
 @implementation Map {
     SKColor *wallColor;
@@ -25,12 +26,7 @@
         //Set ball start and wall color
         wallColor = [SKColor colorWithRed:0.184 green:0.36 blue:0.431 alpha:1.0];
         
-        // Set border (will need to be changed later)
-//        SKPhysicsBody* borderBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:screenRect];
-//        self.physicsBody = borderBody;
-//        self.physicsBody.friction = 0.5f;
-        
-        // Bottorm
+        // Bottom
         SKShapeNode *floor = [SKShapeNode shapeNodeWithRect:CGRectMake(0.0f, 0.0f, CGRectGetWidth(screenRect), 10.0f)];
         floor.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(0.0f, 0.0f, CGRectGetWidth(screenRect), 10.0f)];
         floor.strokeColor = wallColor;
@@ -38,7 +34,7 @@
         [self addChild:floor];
         
         // Left Wall
-        CGMutablePathRef leftPath = [self createPathWithPoints:2 andScreenBounds:screenRect isLeftWall:YES];
+        CGMutablePathRef leftPath = [self createPathWithPoints:0 andScreenBounds:screenRect isLeftWall:YES];
         SKShapeNode *leftWall = [[SKShapeNode alloc] init];
         leftWall.path = leftPath;
         leftWall.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:leftPath];
@@ -48,7 +44,7 @@
         [self addChild:leftWall];
         
         // Right Wall
-        CGMutablePathRef rightPath = [self createPathWithPoints:2 andScreenBounds:screenRect isLeftWall:NO];
+        CGMutablePathRef rightPath = [self createPathWithPoints:0 andScreenBounds:screenRect isLeftWall:NO];
         SKShapeNode *rightWall = [[SKShapeNode alloc] init];
         rightWall.path = rightPath;
         rightWall.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:rightPath];
@@ -57,9 +53,10 @@
         rightWall.fillColor = wallColor;
         [self addChild:rightWall];
         
-        // Release path resources
-        [self releasePath:leftPath];
-        [self releasePath:rightPath];
+        Basket *aBasket = [Basket createBasketOnLeft:YES withColor:wallColor andAngle:0 andSize:2];
+        aBasket.position = CGPointMake(0.0f, CGRectGetMidY(screenRect));
+        [self addChild:aBasket];
+        
     }
     return self;
 }
@@ -78,8 +75,8 @@
         for(int i = 0; i < numPoints; i++) {
             points[i] = CGPointMake(25.0f + i*5.0f, CGRectGetMidY(screenRect) + i*50.0f);
         }
-        points[totalPoints-4] = CGPointMake(15.0f, CGRectGetHeight(screenRect));
-        points[totalPoints-3] = CGPointMake(0.0f, CGRectGetHeight(screenRect));
+        points[totalPoints-4] = CGPointMake(10.0f, CGRectGetHeight(screenRect)*3.0f);
+        points[totalPoints-3] = CGPointMake(0.0f, CGRectGetHeight(screenRect)*3.0f);
         points[totalPoints-2] = CGPointMake(0.0f, 0.0f);
         points[totalPoints-1] = CGPointMake(10.0f, 0.0f);
     }
@@ -87,10 +84,10 @@
         for(int i = 0; i < numPoints; i++) {
             points[i] = CGPointMake(CGRectGetWidth(screenRect) - 25.0f - i*10.0f, CGRectGetMidY(screenRect) - 80.0f + i*70.0f);
         }
-        points[totalPoints-4] = CGPointMake(CGRectGetWidth(screenRect) - 30.0f, CGRectGetHeight(screenRect));
-        points[totalPoints-3] = CGPointMake(CGRectGetWidth(screenRect), CGRectGetHeight(screenRect));
+        points[totalPoints-4] = CGPointMake(CGRectGetWidth(screenRect) - 10.0f, CGRectGetHeight(screenRect)*3.0f);
+        points[totalPoints-3] = CGPointMake(CGRectGetWidth(screenRect), CGRectGetHeight(screenRect)*3.0f);
         points[totalPoints-2] = CGPointMake(CGRectGetWidth(screenRect), 0.0f);
-        points[totalPoints-1] = CGPointMake(CGRectGetWidth(screenRect) - 15.0f, 0.0f);
+        points[totalPoints-1] = CGPointMake(CGRectGetWidth(screenRect) - 10.0f, 0.0f);
     }
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathAddLines(path, NULL, points, totalPoints);
@@ -105,6 +102,16 @@
     CGPathCloseSubpath(path);
     CGPathRelease(path);
 }
+
+-(SKShapeNode*)drawWall:(SKShapeNode*)wall
+          withNumPoints:(int)numPoints
+             andSpacing:(CGFloat)spacing
+            andInsetMax:(CGFloat)insetMax
+{
+    return wall;
+}
+
+
 
 /*
  + (instancetype) mapWithGridSize:(CGSize)gridSize

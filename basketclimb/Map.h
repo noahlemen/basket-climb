@@ -8,10 +8,8 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface Map : SKNode
 
-@property (nonatomic) CGSize gridSize;
-@property (nonatomic) CGPoint spawnPoint;
+@interface Map : SKNode
 
 /* creates a path with number of visible "jutting out" points" */
 -(CGMutablePathRef)createPathWithPoints:(int)numPoints
