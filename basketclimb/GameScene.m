@@ -8,8 +8,9 @@
 
 #import "GameScene.h"
 
-const float FORCE_MULT = 0.2;
+const float FORCE_MULT = 2;
 const float MIN_INPUT = 35.0;
+const float RESTING_SPEED = 0.000000000001;
 
 @implementation GameScene{
     CGPoint touchBegan;
@@ -31,68 +32,30 @@ const float MIN_INPUT = 35.0;
         // Initialize and set-up the map node
         self.map = [[Map alloc] init];
         
+        self.camera = [SKNode node];
+        self.camera.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+        
         // Create ball
         SKSpriteNode *ball = [SKSpriteNode spriteNodeWithImageNamed:@"ball"];
         ball.xScale = .25;
         ball.yScale = .25;
         ball.name = @"ball";
         ball.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
-        [self addChild:ball];
+        [self.world addChild:ball];
         ball.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:ball.frame.size.width/2.5];
         ball.physicsBody.allowsRotation = NO;
         
         [self.world addChild:self.map];
+        [self.world addChild:self.camera];
         [self addChild:self.world];
+        
+        self.anchorPoint = CGPointMake(.5, .5);
+        
+        [self centerOnNode:self.camera];
         
     }
     return self;
 }
-
-/*
--(void)didMoveToView:(SKView *)view {
-    //Set wall color, gravity, and backround color
-    SKColor *wallColor = [SKColor colorWithRed:0.184 green:0.36 blue:0.431 alpha:1.0];
-    self.physicsWorld.gravity = CGVectorMake(0.0f, -9.8f);
-    self.backgroundColor = [SKColor colorWithRed:0.769 green:0.945 blue:1.0 alpha:1.0];
-    
-    // Set border (will need to be changed later)
-    SKPhysicsBody* borderBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
-    self.physicsBody = borderBody;
-    self.physicsBody.friction = 0.5f;
-    
-    // Create ball
-    SKSpriteNode *ball = [SKSpriteNode spriteNodeWithImageNamed:@"ball"];
-    ball.xScale = .25;
-    ball.yScale = .25;
-    ball.name = @"ball";
-    ball.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
-    [self addChild:ball];
-    ball.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:ball.frame.size.width/2.5];
-    ball.physicsBody.allowsRotation = NO;
-    
-    
-    // Bottorm
-    SKShapeNode *floor = [SKShapeNode shapeNodeWithRect:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.frame), 10.0f)];
-    floor.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.frame), 10.0f)];
-    floor.strokeColor = wallColor;
-    floor.fillColor = wallColor;
-    [self addChild:floor];
-    
-    // Left Wall
-    SKShapeNode *leftWall = [SKShapeNode shapeNodeWithRect:CGRectMake(0.0f, 0.0f, 10.0f, CGRectGetHeight(self.frame))];
-    leftWall.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(0.0f, 0.0f, 10.0f, CGRectGetHeight(self.frame))];
-    leftWall.strokeColor = wallColor;
-    leftWall.fillColor = wallColor;
-    [self addChild:leftWall];
-    
-    // Right Wall
-    SKShapeNode *rightWall = [SKShapeNode shapeNodeWithRect:CGRectMake(CGRectGetWidth(self.frame) - 10.0f, 0.0f, 10.0f, CGRectGetHeight(self.frame))];
-    rightWall.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(CGRectGetWidth(self.frame) - 10.0f, 0.0f, 10.0f, CGRectGetHeight(self.frame))];
-    rightWall.strokeColor = wallColor;
-    rightWall.fillColor = wallColor;
-    [self addChild:rightWall];
-
-}*/
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
@@ -171,7 +134,7 @@ const float MIN_INPUT = 35.0;
     if (distance > MIN_INPUT){
         GLKVector2 direction = GLKVector2Normalize(GLKVector2Make(touchEnd.x - touchBegan.x, touchEnd.y - touchBegan.y));
         GLKVector2 force = GLKVector2MultiplyScalar(direction, FORCE_MULT * -distance);
-        [[self childNodeWithName:@"ball"].physicsBody applyForce:CGVectorMake(force.x, force.y)];
+        [[self.world childNodeWithName:@"ball"].physicsBody applyForce:CGVectorMake(force.x, force.y)];
     }
         
     // TO DO: disable touching until ball stops moving
@@ -189,5 +152,34 @@ const float MIN_INPUT = 35.0;
     return sqrtf(dx*dx + dy*dy);
 }
 
+-(void)didSimulatePhysics{
+    if ([self ballIsResting]){
+        // go above ball if its resting
+        float ydistance = [self.world childNodeWithName:@"ball"].position.y - self.camera.position.y + self.frame.size.height*.45;
+        self.camera.position = CGPointMake(self.camera.position.x, (float)MAX(self.camera.position.y + ydistance *.5, self.frame.size.height/2));
+        [self centerOnNode: self.camera];
+    }else{
+        float ydistance = [self.world childNodeWithName:@"ball"].position.y - self.camera.position.y;
+        if (fabsf(ydistance) > self.frame.size.height/3){
+            self.camera.position = CGPointMake(self.camera.position.x, (float)MAX(self.camera.position.y + ydistance *.05, self.frame.size.height/2));
+            [self centerOnNode: self.camera];
+        }
+    }
+}
+
+-(bool)ballIsResting{
+    CGVector v = [self.world childNodeWithName:@"ball"].physicsBody.velocity;
+    float speed = sqrtf(v.dx*v.dx+v.dy*v.dy);
+    if (speed < RESTING_SPEED){
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
+-(void) centerOnNode:(SKNode *)node{
+    CGPoint cameraPositionInScene = [node.scene convertPoint:node.position fromNode:node.parent];
+    node.parent.position = CGPointMake(node.parent.position.x - cameraPositionInScene.x,                                       node.parent.position.y - cameraPositionInScene.y);
+}
 
 @end
