@@ -32,7 +32,6 @@ const float RESTING_SPEED = 0.000000000001;
         
         // Initialize and set-up the map node
         self.map = [[Map alloc] init];
-        //[self.map addBasketOnWall:left_wall atPosition:CGPointMake(0.0f, CGRectGetHeight(self.frame)) withSize:1.5];
         
         self.camera = [SKNode node];
         self.camera.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
