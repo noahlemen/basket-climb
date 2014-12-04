@@ -17,6 +17,7 @@
 		4F1145DF1A2E5E9E00AFF728 /* SKTAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1145D41A2E5E9E00AFF728 /* SKTAudio.m */; };
 		4F1145E01A2E5E9E00AFF728 /* SKTEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1145D61A2E5E9E00AFF728 /* SKTEffects.m */; };
 		4F1145E11A2E5E9E00AFF728 /* SKTTimingFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1145D81A2E5E9E00AFF728 /* SKTTimingFunctions.m */; };
+		4FA225AC1A300F2F00701027 /* Ball.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA225AB1A300F2F00701027 /* Ball.m */; };
 		4FFF88B91A12A11800283B80 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF88B81A12A11800283B80 /* main.m */; };
 		4FFF88BC1A12A11800283B80 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF88BB1A12A11800283B80 /* AppDelegate.m */; };
 		4FFF88BF1A12A11800283B80 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF88BE1A12A11800283B80 /* GameScene.m */; };
@@ -64,6 +65,8 @@
 		4F1145D71A2E5E9E00AFF728 /* SKTTimingFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTTimingFunctions.h; sourceTree = "<group>"; };
 		4F1145D81A2E5E9E00AFF728 /* SKTTimingFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTTimingFunctions.m; sourceTree = "<group>"; };
 		4F1145D91A2E5E9E00AFF728 /* SKTUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTUtils.h; sourceTree = "<group>"; };
+		4FA225AA1A300F2F00701027 /* Ball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ball.h; sourceTree = "<group>"; };
+		4FA225AB1A300F2F00701027 /* Ball.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ball.m; sourceTree = "<group>"; };
 		4FFF88B31A12A11800283B80 /* Basket Climb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Basket Climb.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FFF88B71A12A11800283B80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FFF88B81A12A11800283B80 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -165,6 +168,8 @@
 				4F1145AF1A2E5E8100AFF728 /* SKTUtils */,
 				4F1145A41A2E5E4300AFF728 /* SpriteKit-Easing */,
 				4FFF88BD1A12A11800283B80 /* GameScene.h */,
+				4FA225AA1A300F2F00701027 /* Ball.h */,
+				4FA225AB1A300F2F00701027 /* Ball.m */,
 				4FFF88BE1A12A11800283B80 /* GameScene.m */,
 				4FFF88C01A12A11800283B80 /* GameScene.sks */,
 				4FFF88C21A12A11800283B80 /* GameViewController.h */,
@@ -323,6 +328,7 @@
 				4FFF88BF1A12A11800283B80 /* GameScene.m in Sources */,
 				4F1145DB1A2E5E9E00AFF728 /* SKAction+SKTSpecialEffects.m in Sources */,
 				4F1145DE1A2E5E9E00AFF728 /* SKNode+SKTExtras.m in Sources */,
+				4FA225AC1A300F2F00701027 /* Ball.m in Sources */,
 				4F1145AC1A2E5E5600AFF728 /* SKEase.m in Sources */,
 				E253B63E1A2ED69000C5F743 /* Basket.m in Sources */,
 				4FFF88B91A12A11800283B80 /* main.m in Sources */,
