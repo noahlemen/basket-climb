@@ -18,6 +18,7 @@ const float MIN_INPUT = 35.0;
     SKShapeNode *touchline;
     SKShapeNode *touchline2;
     float basketHeight;
+    BOOL canShoot;
 }
 
 -(id)initWithSize:(CGSize)size {
@@ -62,6 +63,7 @@ const float MIN_INPUT = 35.0;
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
+    canShoot = [self.ball isResting] ? YES : NO;
     
     UITouch *touch = [touches anyObject];
     touchBegan = [touch locationInNode:self];
@@ -69,6 +71,9 @@ const float MIN_INPUT = 35.0;
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+    
+    if (!canShoot) return;
+    
     UITouch *touch = [touches anyObject];
     CGPoint touchPoint = [touch locationInNode:self];
     
@@ -125,6 +130,8 @@ const float MIN_INPUT = 35.0;
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    
+    if (!canShoot) return;
     
     [touchline removeFromParent];
     [touchline2 removeFromParent];
