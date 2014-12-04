@@ -123,7 +123,7 @@
             atPosition:(CGPoint)position
                  withSize:(CGFloat)size
 {
-    Basket *aBasket = [Basket createBasketOnWall:wall withColor:wallColor andAngle:0 andSize:size];
+    Basket *aBasket = [Basket createBasketOnWall:wall withColor:wallColor andOffset:30.0f andSize:size];
     aBasket.position = position;
     [self addChild:aBasket];
     

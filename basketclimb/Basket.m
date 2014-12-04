@@ -9,23 +9,49 @@
 #import "Basket.h"
 
 @implementation Basket
-@synthesize bottom;
-@synthesize side;
+@synthesize basket;
+@synthesize yOffset;
 
 +(Basket*)createBasketOnWall:(wallType)wall
                    withColor:(SKColor*)color
-                    andAngle:(CGFloat)angle
+                    andOffset:(CGFloat)offset
                      andSize:(CGFloat)size
 {
-    return [[Basket alloc] initBasketOnWall:wall withColor:color andAngle:angle andSize:size];
+    return [[Basket alloc] initBasketOnWall:wall withColor:color andOffset:offset andSize:size];
 }
 
 -(Basket*)initBasketOnWall:(wallType)wall
                  withColor:(SKColor*)color
-                  andAngle:(CGFloat)angle
+                  andOffset:(CGFloat)offset
                    andSize:(CGFloat)size
 {
     if (self = [super init]) {
+        yOffset = offset;
+        
+        basket = [SKShapeNode node];
+        basket.fillColor = color;
+        basket.strokeColor = color;
+        
+        UIBezierPath *basketPath = [UIBezierPath bezierPath];
+        [basketPath moveToPoint:CGPointMake(0.0f, 0.0f)];
+        if (wall == left_wall) {
+            [basketPath addLineToPoint:CGPointMake(40.0f*size, yOffset-10.0f)];
+            [basketPath addLineToPoint:CGPointMake(40.0f*size, yOffset)];
+            [basketPath addLineToPoint:CGPointMake(0.0f, 10.0f)];
+            
+        }
+        else {
+            [basketPath addLineToPoint:CGPointMake(-40.0f*size, yOffset-10.0f)];
+            [basketPath addLineToPoint:CGPointMake(-40.0f*size, yOffset)];
+            [basketPath addLineToPoint:CGPointMake(0.0f, 10.0f)];
+        }
+        basket.path = basketPath.CGPath;
+        basket.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:basketPath.CGPath];
+        basket.physicsBody.dynamic = NO;
+        [self addChild:basket];
+        
+        
+        /*
         // Bottom
         bottom = [SKShapeNode node];
         bottom.fillColor = color;
@@ -54,7 +80,7 @@
         bottom.physicsBody.dynamic = NO;
         side.physicsBody.dynamic = NO;
         [self addChild:bottom];
-        [self addChild:side];
+        [self addChild:side];*/
     }
     
     return self;
