@@ -15,6 +15,8 @@
     //NSMutableArray *leftWallPoints;
     //NSMutableArray *rightWallPoints;
     int numBaskets;
+    wallType highestBasket;
+    CGFloat screenHeight;
 }
 
 - (id) init
@@ -22,7 +24,9 @@
     if (( self = [super init] ))
     {
         // Seed numBaskets for procedural generation
-        srandom(numBaskets);
+        srandom(time(NULL));
+        highestBasket = random() % 2;
+        screenHeight = CGRectGetHeight([UIScreen mainScreen].bounds);
         
         // Get size of screen
         CGRect screenRect = [UIScreen mainScreen].bounds;
@@ -57,8 +61,9 @@
         rightWall.fillColor = wallColor;
         [self addChild:rightWall];
         
-        [self addBasketOnWall:left_wall atPosition:CGPointMake(0.0f, CGRectGetMidY(screenRect)) withSize:1.5];
-        [self addBasketOnWall:right_wall atPosition:CGPointMake(CGRectGetWidth(screenRect), CGRectGetMidY(screenRect)+250) withSize:1.5];
+        [self createBasketsforNextSection];
+        //[self addBasketOnWall:left_wall atPosition:CGPointMake(0.0f, CGRectGetMidY(screenRect)) withSize:1.5];
+        //[self addBasketOnWall:right_wall atPosition:CGPointMake(CGRectGetWidth(screenRect), CGRectGetMidY(screenRect)+250) withSize:1.5];
         
     }
     return self;
@@ -129,21 +134,130 @@
     
 }
 
+
+-(void)createBasketsforNextSection
+{
+    [self numBasketsforNextSection]; // set number of baskets for next section
+    CGRect screenRect = [UIScreen mainScreen].bounds; // size of screen
+    //CGFloat screenHeight =
+    int d1, d2, d3, d4, maxDistance, side;
+    
+    // Calculate distance
+    maxDistance = (screenHeight - 250) / numBaskets;
+    side = random() % 3;
+    
+    // If placing 3 baskets in the view
+    if (numBaskets == 3) {
+        d1 = random() % maxDistance + 100;
+        d2 = random() % maxDistance + 70 + d1;
+        d3 = random() % maxDistance + 70 + d2;
+        //highest prev basket is right side, so next basket will be left wall
+        if(highestBasket == right_wall) {
+            // two baskets this side immediately following each other
+            if (side == 0) {
+                [self addBasketOnWall:left_wall atPosition:CGPointMake(0.0f, d1) withSize:1.5];
+                [self addBasketOnWall:right_wall atPosition:CGPointMake(CGRectGetWidth(screenRect), d3) withSize:1.5];
+                [self addBasketOnWall:left_wall atPosition:CGPointMake(0.0f, d2) withSize:1.5];
+                highestBasket = right_wall;
+            }
+            else if (side == 1) { // alternating baskets
+                [self addBasketOnWall:left_wall atPosition:CGPointMake(0.0f, d1) withSize:1.5];
+                [self addBasketOnWall:right_wall atPosition:CGPointMake(CGRectGetWidth(screenRect), d2) withSize:1.5];
+                [self addBasketOnWall:left_wall atPosition:CGPointMake(0.0f, d3) withSize:1.5];
+                highestBasket = left_wall;
+            }
+            else { // two opposite side
+                [self addBasketOnWall:left_wall atPosition:CGPointMake(0.0f, d1) withSize:1.5];
+                [self addBasketOnWall:right_wall atPosition:CGPointMake(CGRectGetWidth(screenRect), d3) withSize:1.5];
+                [self addBasketOnWall:right_wall atPosition:CGPointMake(CGRectGetWidth(screenRect), d2) withSize:1.5];
+                highestBasket = right_wall;
+            }
+        }
+        else { // highest basket is left side, so next basket on right wall
+            // two baskets this side immediately following each other
+            if (side == 0) {
+                [self addBasketOnWall:right_wall atPosition:CGPointMake(CGRectGetWidth(screenRect), d1) withSize:1.5];
+                [self addBasketOnWall:left_wall atPosition:CGPointMake(0.0f, d3) withSize:1.5];
+                [self addBasketOnWall:right_wall atPosition:CGPointMake(CGRectGetWidth(screenRect), d2) withSize:1.5];
+                highestBasket = left_wall;
+            }
+            else if (side == 1) { // alternating baskets
+                [self addBasketOnWall:right_wall atPosition:CGPointMake(CGRectGetWidth(screenRect), d1) withSize:1.5];
+                [self addBasketOnWall:left_wall atPosition:CGPointMake(0.0f, d2) withSize:1.5];
+                [self addBasketOnWall:right_wall atPosition:CGPointMake(CGRectGetWidth(screenRect), d3) withSize:1.5];
+                highestBasket = right_wall;
+            }
+            else { // two opposite side
+                [self addBasketOnWall:right_wall atPosition:CGPointMake(CGRectGetWidth(screenRect), d1) withSize:1.5];
+                [self addBasketOnWall:left_wall atPosition:CGPointMake(0.0f, d3) withSize:1.5];
+                [self addBasketOnWall:left_wall atPosition:CGPointMake(0.0f, d2) withSize:1.5];
+                highestBasket = left_wall;
+            }
+        }
+    }
+    else { // four baskets
+        d1 = random() % maxDistance + 100;
+        d2 = random() % maxDistance + 70 + d1;
+        d3 = random() % maxDistance + 70 + d2;
+        d4 = random() % maxDistance + 70 + d3;
+        // highest prev basket is right side
+        if (highestBasket == right_wall) {
+            // two baskets this side immediately following each other, then alternating
+            if(side == 0) {
+                [self addBasketOnWall:left_wall atPosition:CGPointMake(0.0f, d1) withSize:1.5];
+                [self addBasketOnWall:right_wall atPosition:CGPointMake(CGRectGetWidth(screenRect), d3) withSize:1.5];
+                [self addBasketOnWall:left_wall atPosition:CGPointMake(0.0f, d2) withSize:1.5];
+                [self addBasketOnWall:left_wall atPosition:CGPointMake(0.0f, d4) withSize:1.5];
+                highestBasket = left_wall;
+            }
+            else if (side == 1) { // one basket this side, then two opposite side, then one this side
+                [self addBasketOnWall:left_wall atPosition:CGPointMake(0.0f, d1) withSize:1.5];
+                [self addBasketOnWall:right_wall atPosition:CGPointMake(CGRectGetWidth(screenRect), d2) withSize:1.5];
+                [self addBasketOnWall:right_wall atPosition:CGPointMake(CGRectGetWidth(screenRect), d3) withSize:1.5];
+                [self addBasketOnWall:left_wall atPosition:CGPointMake(0.0f, d4) withSize:1.5];
+                highestBasket = left_wall;
+            }
+            else { // alternating
+                [self addBasketOnWall:left_wall atPosition:CGPointMake(0.0f, d1) withSize:1.5];
+                [self addBasketOnWall:right_wall atPosition:CGPointMake(CGRectGetWidth(screenRect), d2) withSize:1.5];
+                [self addBasketOnWall:left_wall atPosition:CGPointMake(0.0f, d3) withSize:1.5];
+                [self addBasketOnWall:right_wall atPosition:CGPointMake(CGRectGetWidth(screenRect), d4) withSize:1.5];
+                highestBasket = right_wall;
+            }
+        }
+        else { // highest prev basket was left side
+            if(side == 0) {
+                [self addBasketOnWall:right_wall atPosition:CGPointMake(CGRectGetWidth(screenRect), d1) withSize:1.5];
+                [self addBasketOnWall:left_wall atPosition:CGPointMake(0.0f, d3) withSize:1.5];
+                [self addBasketOnWall:right_wall atPosition:CGPointMake(CGRectGetWidth(screenRect), d2) withSize:1.5];
+                [self addBasketOnWall:right_wall atPosition:CGPointMake(CGRectGetWidth(screenRect), d4) withSize:1.5];
+                highestBasket = right_wall;
+            }
+            else if (side == 1) { // one basket this side, then two opposite side, then one this side
+                [self addBasketOnWall:right_wall atPosition:CGPointMake(CGRectGetWidth(screenRect), d1) withSize:1.5];
+                [self addBasketOnWall:left_wall atPosition:CGPointMake(0.0f, d2) withSize:1.5];
+                [self addBasketOnWall:left_wall atPosition:CGPointMake(0.0f, d3) withSize:1.5];
+                [self addBasketOnWall:right_wall atPosition:CGPointMake(CGRectGetWidth(screenRect), d4) withSize:1.5];
+                highestBasket = right_wall;
+            }
+            else { // alternating
+                [self addBasketOnWall:right_wall atPosition:CGPointMake(CGRectGetWidth(screenRect), d1) withSize:1.5];
+                [self addBasketOnWall:left_wall atPosition:CGPointMake(0.0f, d2) withSize:1.5];
+                [self addBasketOnWall:right_wall atPosition:CGPointMake(CGRectGetWidth(screenRect), d3) withSize:1.5];
+                [self addBasketOnWall:left_wall atPosition:CGPointMake(0.0f, d4) withSize:1.5];
+                highestBasket = left_wall;
+            }
+        }
+    }
+    
+}
+
+/* Randomly sets number of baskets for Next section */
 -(void)numBasketsforNextSection
 {
     // most baskets in one screen is 4, least is 2
-    numBaskets = random() % 2 + 2;
+    numBaskets = random() % 2 + 3;
 }
-
-//-(CGPoint)createRandomPosition
-
-/* TODO: create baskets at random positions.
-    1. call numBasketsforNextSection to get the number of baskets for the next section
-    2. there should always be at least one basket on each side. based on this, randomly determine how many
-        baskets should be on each side
-    3. place baskets on wall. min distance is 150 apart, should always be
- */
-
 
 @end
 
