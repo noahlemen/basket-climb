@@ -10,7 +10,6 @@
 
 const float FORCE_MULT = 2;
 const float MIN_INPUT = 35.0;
-const float RESTING_SPEED = 0.000000000001;
 
 @implementation GameScene{
     CGPoint touchBegan;
@@ -35,7 +34,7 @@ const float RESTING_SPEED = 0.000000000001;
         self.camera.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
         
         // Create ball
-        self.ball = [SKSpriteNode spriteNodeWithImageNamed:@"ball"];
+        self.ball = [[Ball alloc] init];
         self.ball.xScale = .25;
         self.ball.yScale = .25;
         self.ball.name = @"ball";
@@ -142,7 +141,7 @@ const float RESTING_SPEED = 0.000000000001;
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
-    if ([self ballIsResting]){
+    if ([self.ball isResting]){
         // go above ball if its resting
         float ydistance = self.ball.position.y - self.camera.position.y + self.frame.size.height*.45;
         self.camera.position = CGPointMake(self.camera.position.x, (float)MAX(self.camera.position.y + ydistance *.1, self.frame.size.height/2));
@@ -167,16 +166,6 @@ const float RESTING_SPEED = 0.000000000001;
 
 -(void)didSimulatePhysics{
     
-}
-
--(bool)ballIsResting{
-    CGVector v = self.ball.physicsBody.velocity;
-    float speed = sqrtf(v.dx*v.dx+v.dy*v.dy);
-    if (speed < RESTING_SPEED){
-        return YES;
-    }else{
-        return NO;
-    }
 }
 
 -(void) centerOnNode:(SKNode *)node{

@@ -7,6 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "Ball.h"
 #import "Map.h"
 
 @interface GameScene : SKScene
@@ -14,6 +15,6 @@
 @property (nonatomic) SKNode *world;
 @property (nonatomic) Map *map;
 @property (nonatomic) SKNode *camera;
-@property (nonatomic) SKSpriteNode *ball;
+@property (nonatomic) Ball *ball;
 
 @end
