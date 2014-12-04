@@ -8,6 +8,10 @@
 
 #import <SpriteKit/SpriteKit.h>
 
+typedef enum {
+    left_wall,
+    right_wall
+} wallType;
 
 @interface Map : SKNode
 
@@ -18,6 +22,15 @@
 
 /* Releases CGMutabalePathRef resources */
 -(void)releasePath:(CGMutablePathRef)path;
+
+/* Adds a basket to the map */
+-(void)addBasketOnWall:(wallType)wall
+            atPosition:(CGPoint)position
+              withSize:(CGFloat)size;
+
+/* Creates two screens worth of walls and baskets */
+-(void)createNextGameSection;
+
 
 /*
 + (id) mapWithGridSize:(CGSize)gridSize;

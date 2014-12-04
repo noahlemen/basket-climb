@@ -14,12 +14,16 @@
     SKColor *wallColor;
     //NSMutableArray *leftWallPoints;
     //NSMutableArray *rightWallPoints;
+    int numBaskets;
 }
 
 - (id) init
 {
     if (( self = [super init] ))
     {
+        // Seed numBaskets for procedural generation
+        srandom(numBaskets);
+        
         // Get size of screen
         CGRect screenRect = [UIScreen mainScreen].bounds;
         
@@ -53,13 +57,8 @@
         rightWall.fillColor = wallColor;
         [self addChild:rightWall];
         
-        Basket *firstBasket = [Basket createBasketOnLeft:YES withColor:wallColor andAngle:0 andSize:1.5];
-        firstBasket.position = CGPointMake(0.0f, CGRectGetMidY(screenRect));
-        [self addChild:firstBasket];
-        
-        Basket *secondBasket = [Basket createBasketOnLeft:NO withColor:wallColor andAngle:0 andSize:1.5];
-        secondBasket.position = CGPointMake(CGRectGetWidth(screenRect), CGRectGetMidY(screenRect)+250);
-        [self addChild:secondBasket];
+        [self addBasketOnWall:left_wall atPosition:CGPointMake(0.0f, CGRectGetMidY(screenRect)) withSize:1.5];
+        [self addBasketOnWall:right_wall atPosition:CGPointMake(CGRectGetWidth(screenRect), CGRectGetMidY(screenRect)+250) withSize:1.5];
         
     }
     return self;
@@ -115,7 +114,28 @@
     return wall;
 }
 
+-(void)addBasketOnWall:(wallType)wall
+            atPosition:(CGPoint)position
+                 withSize:(CGFloat)size
+{
+    Basket *aBasket = [Basket createBasketOnWall:wall withColor:wallColor andAngle:0 andSize:size];
+    aBasket.position = position;
+    [self addChild:aBasket];
+    
+}
 
+-(void)createNextGameSection
+{
+    
+}
+
+-(void)numBasketsforNextSection
+{
+    // most baskets in one scene is 4
+    numBaskets = random() % 4;
+}
+
+//-(CGPoint)createRandomPosition
 
 /*
  + (instancetype) mapWithGridSize:(CGSize)gridSize

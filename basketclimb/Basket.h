@@ -8,6 +8,7 @@
 //  Class for creating baskets
 
 #import <SpriteKit/SpriteKit.h>
+#import "Map.h"
 
 @interface Basket : SKNode
 
@@ -15,13 +16,13 @@
 @property (nonatomic) SKShapeNode *side;
 
 /* Class constructor */
-+(Basket*)createBasketOnLeft:(BOOL)leftSide
++(Basket*)createBasketOnWall:(wallType)wall
              withColor:(SKColor*)color
               andAngle:(CGFloat)angle
                andSize:(CGFloat)size;
 
 /* Initializes basket on specific side */
--(Basket*)initBasketOnLeft:(BOOL)leftSide
+-(Basket*)initBasketOnWall:(wallType)wall
                  withColor:(SKColor*)color
                   andAngle:(CGFloat)angle
                    andSize:(CGFloat)size;

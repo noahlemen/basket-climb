@@ -12,15 +12,15 @@
 @synthesize bottom;
 @synthesize side;
 
-+(Basket*)createBasketOnLeft:(BOOL)leftSide
++(Basket*)createBasketOnWall:(wallType)wall
                    withColor:(SKColor*)color
                     andAngle:(CGFloat)angle
                      andSize:(CGFloat)size
 {
-    return [[Basket alloc] initBasketOnLeft:leftSide withColor:color andAngle:angle andSize:size];
+    return [[Basket alloc] initBasketOnWall:wall withColor:color andAngle:angle andSize:size];
 }
 
--(Basket*)initBasketOnLeft:(BOOL)leftSide
+-(Basket*)initBasketOnWall:(wallType)wall
                  withColor:(SKColor*)color
                   andAngle:(CGFloat)angle
                    andSize:(CGFloat)size
@@ -37,7 +37,7 @@
         side.strokeColor = color;
         
         // Draw shapes according to side that basket is on
-        if(leftSide) {
+        if(wall == left_wall) {
             bottom.path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, 30*size, 10)].CGPath;
             bottom.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(0, 0, 30*size, 10)];
 

@@ -7,6 +7,7 @@
 //
 
 #import "GameScene.h"
+#import "Map.h"
 
 const float FORCE_MULT = 2;
 const float MIN_INPUT = 35.0;
@@ -17,6 +18,7 @@ const float RESTING_SPEED = 0.000000000001;
     CGPoint touchEnd;
     SKShapeNode *touchline;
     SKShapeNode *touchline2;
+    float basketHeight;
 }
 
 -(id)initWithSize:(CGSize)size {
@@ -30,6 +32,7 @@ const float RESTING_SPEED = 0.000000000001;
         
         // Initialize and set-up the map node
         self.map = [[Map alloc] init];
+        [self.map addBasketOnWall:left_wall atPosition:CGPointMake(0.0f, CGRectGetHeight(self.frame)) withSize:1.5];
         
         self.camera = [SKNode node];
         self.camera.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
@@ -55,6 +58,8 @@ const float RESTING_SPEED = 0.000000000001;
     }
     return self;
 }
+
+
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
@@ -181,7 +186,13 @@ const float RESTING_SPEED = 0.000000000001;
 
 -(void) centerOnNode:(SKNode *)node{
     CGPoint cameraPositionInScene = [node.scene convertPoint:node.position fromNode:node.parent];
-    node.parent.position = CGPointMake(node.parent.position.x - cameraPositionInScene.x,                                       node.parent.position.y - cameraPositionInScene.y);
+    node.parent.position = CGPointMake(node.parent.position.x - cameraPositionInScene.x, node.parent.position.y - cameraPositionInScene.y);
+}
+
+
+-(void)extendMap
+{
+    // call 
 }
 
 @end
