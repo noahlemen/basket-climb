@@ -38,7 +38,7 @@
         [self addChild:floor];
         
         // Left Wall
-        CGMutablePathRef leftPath = [self createPathWithPoints:0 andScreenBounds:screenRect isLeftWall:YES];
+        CGMutablePathRef leftPath = [self createPathWithPoints:0 andScreenBounds:screenRect onWall:left_wall];
         SKShapeNode *leftWall = [[SKShapeNode alloc] init];
         leftWall.path = leftPath;
         leftWall.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:leftPath];
@@ -48,7 +48,7 @@
         [self addChild:leftWall];
         
         // Right Wall
-        CGMutablePathRef rightPath = [self createPathWithPoints:0 andScreenBounds:screenRect isLeftWall:NO];
+        CGMutablePathRef rightPath = [self createPathWithPoints:0 andScreenBounds:screenRect onWall:right_wall];
         SKShapeNode *rightWall = [[SKShapeNode alloc] init];
         rightWall.path = rightPath;
         rightWall.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:rightPath];
@@ -67,14 +67,14 @@
 /* creates a path with number of visible "jutting out" points */
 -(CGMutablePathRef)createPathWithPoints:(int)numPoints
                         andScreenBounds:(CGRect)screenRect
-                             isLeftWall:(BOOL)leftWall
+                             onWall:(wallType)wall
 {
     
     // This will somehow need to be procedurally done
     int totalPoints = numPoints + 4;
     CGPoint points[totalPoints];
     
-    if(leftWall) {
+    if(wall == left_wall) {
         for(int i = 0; i < numPoints; i++) {
             points[i] = CGPointMake(25.0f + i*5.0f, CGRectGetMidY(screenRect) + i*50.0f);
         }
@@ -131,27 +131,19 @@
 
 -(void)numBasketsforNextSection
 {
-    // most baskets in one scene is 4
-    numBaskets = random() % 4;
+    // most baskets in one screen is 4, least is 2
+    numBaskets = random() % 2 + 2;
 }
 
 //-(CGPoint)createRandomPosition
 
-/*
- + (instancetype) mapWithGridSize:(CGSize)gridSize
- {
- return [[self alloc] initWithGridSize:gridSize];
- }
- 
- - (instancetype) initWithGridSize:(CGSize)gridSize
- {
- if (( self = [super init] ))
- {
- self.gridSize = gridSize;
- _spawnPoint = CGPointZero;
- }
- return self;
- }*/
+/* TODO: create baskets at random positions.
+    1. call numBasketsforNextSection to get the number of baskets for the next section
+    2. there should always be at least one basket on each side. based on this, randomly determine how many
+        baskets should be on each side
+    3. place baskets on wall. min distance is 150 apart, should always be
+ */
+
 
 @end
 

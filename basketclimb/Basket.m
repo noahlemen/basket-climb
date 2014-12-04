@@ -56,9 +56,7 @@
         [self addChild:bottom];
         [self addChild:side];
     }
-
     
-
     return self;
 }
 

@@ -18,7 +18,7 @@ typedef enum {
 /* creates a path with number of visible "jutting out" points" */
 -(CGMutablePathRef)createPathWithPoints:(int)numPoints
                         andScreenBounds:(CGRect)screenRect
-                             isLeftWall:(BOOL)leftWall;
+                             onWall:(wallType)wall;
 
 /* Releases CGMutabalePathRef resources */
 -(void)releasePath:(CGMutablePathRef)path;
