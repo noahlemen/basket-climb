@@ -9,6 +9,7 @@
 #import "Map.h"
 #import "GameScene.h"
 #import "Basket.h"
+#import "Ball.h"
 
 @implementation Map {
     SKColor *wallColor;
@@ -39,6 +40,8 @@
         floor.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(0.0f, 0.0f, CGRectGetWidth(screenRect), 10.0f)];
         floor.strokeColor = wallColor;
         floor.fillColor = wallColor;
+        floor.physicsBody.categoryBitMask = CollisionTypeFloor;
+        floor.physicsBody.collisionBitMask = CollisionTypeBall;
         [self addChild:floor];
 
         // Initialize level with walls and baskets
@@ -67,6 +70,8 @@
     wall.path = path;
     wall.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:path];
     wall.physicsBody.dynamic = NO;
+    //wall.physicsBody.categoryBitMask = CollisionTypeWall;
+    //wall.physicsBody.contactTestBitMask = 0;
     wall.strokeColor = wallColor;
     wall.fillColor = wallColor;
     [self addChild:wall];

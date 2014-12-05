@@ -10,6 +10,13 @@
 #import "Ball.h"
 #import "Map.h"
 
+typedef enum : uint8_t {
+    CollisionTypeBasket = 1,
+    CollisionTypeBall = 2,
+    CollisionTypeFloor = 4,
+    CollisionTypeWAll = 8
+}ClimbColliderType;
+
 @interface GameScene : SKScene
 
 @property (nonatomic) SKNode *world;

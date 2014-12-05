@@ -7,6 +7,7 @@
 //
 
 #import "Basket.h"
+#import "GameScene.h"
 
 @implementation Basket
 @synthesize basket;
@@ -48,6 +49,8 @@
         basket.path = basketPath.CGPath;
         basket.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:basketPath.CGPath];
         basket.physicsBody.dynamic = NO;
+        basket.physicsBody.categoryBitMask = CollisionTypeBasket;
+        basket.physicsBody.contactTestBitMask = CollisionTypeBall;
         [self addChild:basket];
 
     }

@@ -31,7 +31,6 @@ typedef enum {
 /* Creates two screens worth of walls and baskets */
 -(void)createNextGameSection;
 
-
 /*
 + (id) mapWithGridSize:(CGSize)gridSize;
 - (id) initWithGridSize:(CGSize)gridSize;

@@ -51,7 +51,6 @@ const float MIN_INPUT = 35.0;
         self.ball.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.ball.frame.size.width/2.5];
         self.ball.physicsBody.allowsRotation = NO;
         self.ball.physicsBody.categoryBitMask = CollisionTypeBall;
-        //self.ball.physicsBody.collisionBitMask = CollisionTypeBasket;
         self.ball.physicsBody.contactTestBitMask = CollisionTypeBasket;
         
         [self.world addChild:self.map];
