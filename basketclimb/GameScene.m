@@ -159,7 +159,10 @@ const float MIN_INPUT = 35.0;
         self.camera.position = CGPointMake(self.camera.position.x, (float)MAX(self.camera.position.y + ydistance *.1, self.frame.size.height/2));
     }else{
         float ydistance = self.ball.position.y - self.camera.position.y;
-        if (fabsf(ydistance) > self.frame.size.height/3){
+        float distanceFromRest = self.ball.position.y - self.ball.lastRestingPosition.y;
+        if (fabsf(ydistance) > self.frame.size.height/3
+            && ((distanceFromRest > self.frame.size.height/3 && self.ball.physicsBody.velocity.dy > 0)
+                || (self.ball.physicsBody.velocity.dy < 0))){
             self.camera.position = CGPointMake(self.camera.position.x, (float)MAX(self.camera.position.y + ydistance *.05, self.frame.size.height/2));
         }
     }
