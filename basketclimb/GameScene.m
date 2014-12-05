@@ -95,8 +95,11 @@ const float MIN_INPUT = 35.0;
     [touchline2 removeFromParent];
     [[self childNodeWithName:@"arrow"] removeFromParent];
     
+    float distance = [self distanceFrom:touchBegan to:touchPoint];
     
-    if ([self distanceFrom:touchBegan to:touchPoint] > MIN_INPUT){
+    if (distance > MIN_INPUT){
+        
+        distance = (distance > self.frame.size.height/2) ? self.frame.size.height/2 : distance;
         
         SKSpriteNode *arrow = [SKSpriteNode spriteNodeWithImageNamed:@"arrow"];
         
@@ -106,12 +109,14 @@ const float MIN_INPUT = 35.0;
         
         CGMutablePathRef pathToDraw = CGPathCreateMutable();
         CGPathMoveToPoint(pathToDraw, NULL, frontLineBegin.x, frontLineBegin.y);
-        CGPathAddLineToPoint(pathToDraw, NULL, 2*touchBegan.x-touchPoint.x, 2*touchBegan.y-touchPoint.y);
+        GLKVector2 frontLineEnd = GLKVector2Add(GLKVector2Make(touchBegan.x, touchBegan.y), GLKVector2MultiplyScalar(direction, -distance));
+        CGPathAddLineToPoint(pathToDraw, NULL, frontLineEnd.x, frontLineEnd.y);
         CGPathCloseSubpath(pathToDraw);
         
         CGMutablePathRef pathToDraw2 = CGPathCreateMutable();
         CGPathMoveToPoint(pathToDraw2, NULL, backLineBegin.x, backLineBegin.y);
-        CGPathAddLineToPoint(pathToDraw2, NULL, touchPoint.x, touchPoint.y);
+        GLKVector2 backLineEnd = GLKVector2Add(GLKVector2Make(touchBegan.x, touchBegan.y), GLKVector2MultiplyScalar(direction, distance));
+        CGPathAddLineToPoint(pathToDraw2, NULL, backLineEnd.x, backLineEnd.y);
         CGPathCloseSubpath(pathToDraw2);
         
         touchline = [SKShapeNode node];
@@ -151,8 +156,10 @@ const float MIN_INPUT = 35.0;
     
     float distance = [self distanceFrom:touchBegan to:touchEnd];
     if (distance > MIN_INPUT){
+        distance = (distance > self.frame.size.height/2) ? self.frame.size.height/2 : distance;
         GLKVector2 direction = GLKVector2Normalize(GLKVector2Make(touchEnd.x - touchBegan.x, touchEnd.y - touchBegan.y));
-        GLKVector2 force = GLKVector2MultiplyScalar(direction, FORCE_MULT * -distance);
+        float magnitude = -FORCE_MULT * 10 * powf(distance,.6);
+        GLKVector2 force = GLKVector2MultiplyScalar(direction, magnitude);
         [self.ball.physicsBody applyForce:CGVectorMake(force.x, force.y)];
     }
         
@@ -168,7 +175,10 @@ const float MIN_INPUT = 35.0;
         self.camera.position = CGPointMake(self.camera.position.x, (float)MAX(self.camera.position.y + ydistance *.1, self.frame.size.height/2));
     }else{
         float ydistance = self.ball.position.y - self.camera.position.y;
-        if (fabsf(ydistance) > self.frame.size.height/3){
+        float distanceFromRest = self.ball.position.y - self.ball.lastRestingPosition.y;
+        if (fabsf(ydistance) > self.frame.size.height/3
+            && ((distanceFromRest > self.frame.size.height/3 && self.ball.physicsBody.velocity.dy > 0)
+                || (self.ball.physicsBody.velocity.dy < 0))){
             self.camera.position = CGPointMake(self.camera.position.x, (float)MAX(self.camera.position.y + ydistance *.05, self.frame.size.height/2));
         }
     }
