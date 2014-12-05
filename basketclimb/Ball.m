@@ -8,7 +8,7 @@
 
 #import "Ball.h"
 
-const float RESTING_SPEED = 0.000000000001;
+const float RESTING_SPEED = 0.000001;
 
 @implementation Ball
 
