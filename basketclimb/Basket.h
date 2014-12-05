@@ -17,13 +17,13 @@
 
 /* Class constructor */
 +(Basket*)createBasketOnWall:(wallType)wall
-             withColor:(SKColor*)color
-              andOffset:(CGFloat)offset
-               andSize:(CGFloat)size;
+                   withColor:(SKColor*)color
+                   andOffset:(CGFloat)offset
+                     andSize:(CGFloat)size;
 
 /* Initializes basket on specific side */
 -(Basket*)initBasketOnWall:(wallType)wall
                  withColor:(SKColor*)color
-                  andOffset:(CGFloat)offset
+                 andOffset:(CGFloat)offset
                    andSize:(CGFloat)size;
 @end
