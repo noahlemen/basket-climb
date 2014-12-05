@@ -70,8 +70,6 @@
     wall.path = path;
     wall.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:path];
     wall.physicsBody.dynamic = NO;
-    //wall.physicsBody.categoryBitMask = CollisionTypeWall;
-    //wall.physicsBody.contactTestBitMask = 0;
     wall.strokeColor = wallColor;
     wall.fillColor = wallColor;
     [self addChild:wall];

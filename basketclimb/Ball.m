@@ -11,11 +11,13 @@
 const float RESTING_SPEED = 0.000001;
 
 @implementation Ball
+@synthesize lastRestingPosition;
+@synthesize touchingBasket;
 
 -(Ball *)init{
     self = [super initWithImageNamed:@"ball"];
     if (self){
-        // other stuff
+        touchingBasket = NO;
     }
     return self;
 }

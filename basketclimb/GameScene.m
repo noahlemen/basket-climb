@@ -228,7 +228,34 @@ const float MIN_INPUT = 35.0;
     // IF one body is the basket and the other is the ball, do something
     if ((firstBody.categoryBitMask & CollisionTypeBasket) != 0 && (secondBody.categoryBitMask & CollisionTypeBall) != 0)
     {
-        NSLog(@"Ball touched basket");
+        NSLog(@"Basket made");
+        self.ball.touchingBasket = YES;
+        
+        //NSLog(@"Basket Made");
+    }
+}
+
+-(void)didEndContact:(SKPhysicsContact *)contact
+{
+    SKPhysicsBody *firstBody, *secondBody;
+    
+    // Set bodies
+    if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask)
+    {
+        firstBody = contact.bodyA;
+        secondBody = contact.bodyB;
+    }
+    else
+    {
+        firstBody = contact.bodyB;
+        secondBody = contact.bodyA;
+    }
+    
+    // IF one body is the basket and the other is the ball, do something
+    if ((firstBody.categoryBitMask & CollisionTypeBasket) != 0 && (secondBody.categoryBitMask & CollisionTypeBall) != 0)
+    {
+        NSLog(@"Contact ended");
+        self.ball.touchingBasket = NO;
     }
 }
 

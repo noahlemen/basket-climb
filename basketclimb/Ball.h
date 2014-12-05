@@ -11,6 +11,7 @@
 @interface Ball : SKSpriteNode
 
 @property CGPoint lastRestingPosition;
+@property BOOL touchingBasket;
 
 - (Ball *) init;
 
