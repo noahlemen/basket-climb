@@ -12,7 +12,12 @@
 const float FORCE_MULT = 2;
 const float MIN_INPUT = 35.0;
 
-@implementation GameScene{
+@interface GameScene() <SKPhysicsContactDelegate>
+
+@end
+
+@implementation GameScene
+{
     CGPoint touchBegan;
     CGPoint touchEnd;
     SKShapeNode *touchline;
@@ -45,6 +50,9 @@ const float MIN_INPUT = 35.0;
         [self.world addChild:self.ball];
         self.ball.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.ball.frame.size.width/2.5];
         self.ball.physicsBody.allowsRotation = NO;
+        self.ball.physicsBody.categoryBitMask = CollisionTypeBall;
+        //self.ball.physicsBody.collisionBitMask = CollisionTypeBasket;
+        self.ball.physicsBody.contactTestBitMask = CollisionTypeBasket;
         
         [self.world addChild:self.map];
         [self.world addChild:self.camera];
@@ -53,6 +61,8 @@ const float MIN_INPUT = 35.0;
         self.anchorPoint = CGPointMake(.5, .5);
         
         [self centerOnNode:self.camera];
+        
+        self.physicsWorld.contactDelegate = self;
         
     }
     return self;
@@ -188,6 +198,29 @@ const float MIN_INPUT = 35.0;
 -(void)extendMap
 {
     // call 
+}
+
+- (void)didBeginContact:(SKPhysicsContact *)contact
+{
+    SKPhysicsBody *firstBody, *secondBody;
+    
+    // Set bodies
+    if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask)
+    {
+        firstBody = contact.bodyA;
+        secondBody = contact.bodyB;
+    }
+    else
+    {
+        firstBody = contact.bodyB;
+        secondBody = contact.bodyA;
+    }
+    
+    // IF one body is the basket and the other is the ball, do something
+    if ((firstBody.categoryBitMask & CollisionTypeBasket) != 0 && (secondBody.categoryBitMask & CollisionTypeBall) != 0)
+    {
+        NSLog(@"Ball touched basket");
+    }
 }
 
 @end
