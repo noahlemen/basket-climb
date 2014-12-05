@@ -9,52 +9,47 @@
 #import "Basket.h"
 
 @implementation Basket
-@synthesize bottom;
-@synthesize side;
+@synthesize basket;
+@synthesize yOffset;
 
 +(Basket*)createBasketOnWall:(wallType)wall
                    withColor:(SKColor*)color
-                    andAngle:(CGFloat)angle
+                   andOffset:(CGFloat)offset
                      andSize:(CGFloat)size
 {
-    return [[Basket alloc] initBasketOnWall:wall withColor:color andAngle:angle andSize:size];
+    return [[Basket alloc] initBasketOnWall:wall withColor:color andOffset:offset andSize:size];
 }
 
 -(Basket*)initBasketOnWall:(wallType)wall
                  withColor:(SKColor*)color
-                  andAngle:(CGFloat)angle
+                 andOffset:(CGFloat)offset
                    andSize:(CGFloat)size
 {
     if (self = [super init]) {
-        // Bottom
-        bottom = [SKShapeNode node];
-        bottom.fillColor = color;
-        bottom.strokeColor = color;
+        yOffset = offset;
         
-        // Side
-        side = [SKShapeNode node];
-        side.fillColor = color;
-        side.strokeColor = color;
+        basket = [SKShapeNode node];
+        basket.fillColor = color;
+        basket.strokeColor = color;
         
-        // Draw shapes according to side that basket is on
-        if(wall == left_wall) {
-            bottom.path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, 30*size, 10)].CGPath;
-            bottom.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(0, 0, 30*size, 10)];
-
-            side.path = [UIBezierPath bezierPathWithRect:CGRectMake(30*size, 0, 10, 30)].CGPath;
-            side.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(30*size, 0, 10, 30)];
-        }
-        else { // right side
-            bottom.path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, -30*size, 10)].CGPath;
-            bottom.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(0, 0, -30*size, 10)];
+        UIBezierPath *basketPath = [UIBezierPath bezierPath];
+        [basketPath moveToPoint:CGPointMake(0.0f, 0.0f)];
+        if (wall == left_wall) {
+            [basketPath addLineToPoint:CGPointMake(40.0f*size, yOffset-10.0f)];
+            [basketPath addLineToPoint:CGPointMake(40.0f*size, yOffset)];
+            [basketPath addLineToPoint:CGPointMake(0.0f, 10.0f)];
             
-            side.path = [UIBezierPath bezierPathWithRect:CGRectMake(-30*size, 0, -10, 30)].CGPath;
-            side.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(-30*size, 0, -10, 30)];
         }
-        bottom.physicsBody.dynamic = NO;
-        side.physicsBody.dynamic = NO;
-        [self addChild:bottom];
-        [self addChild:side];
+        else {
+            [basketPath addLineToPoint:CGPointMake(-40.0f*size, yOffset-10.0f)];
+            [basketPath addLineToPoint:CGPointMake(-40.0f*size, yOffset)];
+            [basketPath addLineToPoint:CGPointMake(0.0f, 10.0f)];
+        }
+        basket.path = basketPath.CGPath;
+        basket.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:basketPath.CGPath];
+        basket.physicsBody.dynamic = NO;
+        [self addChild:basket];
+
     }
     
     return self;

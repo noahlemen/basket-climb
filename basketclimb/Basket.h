@@ -12,18 +12,18 @@
 
 @interface Basket : SKNode
 
-@property (nonatomic) SKShapeNode *bottom;
-@property (nonatomic) SKShapeNode *side;
+@property CGFloat yOffset;
+@property (nonatomic) SKShapeNode *basket;
 
 /* Class constructor */
 +(Basket*)createBasketOnWall:(wallType)wall
-             withColor:(SKColor*)color
-              andAngle:(CGFloat)angle
-               andSize:(CGFloat)size;
+                   withColor:(SKColor*)color
+                   andOffset:(CGFloat)offset
+                     andSize:(CGFloat)size;
 
 /* Initializes basket on specific side */
 -(Basket*)initBasketOnWall:(wallType)wall
                  withColor:(SKColor*)color
-                  andAngle:(CGFloat)angle
+                 andOffset:(CGFloat)offset
                    andSize:(CGFloat)size;
 @end
