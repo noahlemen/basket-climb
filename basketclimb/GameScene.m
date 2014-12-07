@@ -98,7 +98,7 @@ const float MIN_INPUT = 35.0;
     
     if (distance > MIN_INPUT){
         
-        distance = (distance > self.frame.size.height/2) ? self.frame.size.height/2 : distance;
+        distance = (distance > self.frame.size.height/3) ? self.frame.size.height/3 : distance;
         
         SKSpriteNode *arrow = [SKSpriteNode spriteNodeWithImageNamed:@"arrow"];
         
@@ -131,8 +131,8 @@ const float MIN_INPUT = 35.0;
         [touchline2 setStrokeColor:[UIColor colorWithWhite:0 alpha:.1]];
         [self addChild:touchline2];
         
-        arrow.position = CGPointMake(2*touchBegan.x-touchPoint.x,
-                                    2*touchBegan.y-touchPoint.y);
+        arrow.position = CGPointMake(frontLineEnd.x,
+                                    frontLineEnd.y);
         arrow.xScale = .5f;
         arrow.yScale = .5f;
         arrow.zRotation = atan2f(direction.y, direction.x);
@@ -155,9 +155,9 @@ const float MIN_INPUT = 35.0;
     
     float distance = [self distanceFrom:touchBegan to:touchEnd];
     if (distance > MIN_INPUT){
-        distance = (distance > self.frame.size.height/2) ? self.frame.size.height/2 : distance;
+        distance = (distance > self.frame.size.height/3) ? self.frame.size.height/3 : distance;
         GLKVector2 direction = GLKVector2Normalize(GLKVector2Make(touchEnd.x - touchBegan.x, touchEnd.y - touchBegan.y));
-        float magnitude = -FORCE_MULT * 10 * powf(distance,.6);
+        float magnitude = -FORCE_MULT * 50 * powf(distance,.3);
         GLKVector2 force = GLKVector2MultiplyScalar(direction, magnitude);
         [self.ball.physicsBody applyForce:CGVectorMake(force.x, force.y)];
     }
