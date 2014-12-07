@@ -9,7 +9,7 @@
 #import "GameScene.h"
 #import "Map.h"
 
-const float FORCE_MULT = 2;
+const float FORCE_MULT = 1.5;
 const float MIN_INPUT = 35.0;
 
 @interface GameScene() <SKPhysicsContactDelegate>
@@ -157,13 +157,10 @@ const float MIN_INPUT = 35.0;
     if (distance > MIN_INPUT){
         distance = (distance > self.frame.size.height/3) ? self.frame.size.height/3 : distance;
         GLKVector2 direction = GLKVector2Normalize(GLKVector2Make(touchEnd.x - touchBegan.x, touchEnd.y - touchBegan.y));
-        float magnitude = -FORCE_MULT * 50 * powf(distance,.3);
+        float magnitude = -FORCE_MULT * powf(distance,.3);
         GLKVector2 force = GLKVector2MultiplyScalar(direction, magnitude);
-        [self.ball.physicsBody applyForce:CGVectorMake(force.x, force.y)];
+        [self.ball.physicsBody applyImpulse:CGVectorMake(force.x, force.y)];
     }
-        
-    // TO DO: disable touching until ball stops moving
-    
 }
 
 -(void)update:(CFTimeInterval)currentTime {
