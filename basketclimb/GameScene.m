@@ -9,8 +9,9 @@
 #import "GameScene.h"
 #import "Map.h"
 
-const float FORCE_MULT = 2;
+const float FORCE_MULT = 1.5;
 const float MIN_INPUT = 35.0;
+const float SWIPE_FORCE = 2.0;
 
 @interface GameScene() <SKPhysicsContactDelegate>
 
@@ -24,6 +25,7 @@ const float MIN_INPUT = 35.0;
     SKShapeNode *touchline2;
     float basketHeight;
     BOOL canShoot;
+    BOOL canSwipe;
 }
 
 -(id)initWithSize:(CGSize)size {
@@ -80,14 +82,20 @@ const float MIN_INPUT = 35.0;
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
     
-    if (!canShoot) return;
+    
     
     UITouch *touch = [touches anyObject];
     CGPoint touchPoint = [touch locationInNode:self];
     
-    // TODO: establish minimum magnitude of toss, offset line indicators from touch point by that amount ?
-    // offset will need to be circular, remember to use RMS if needed - also subtract that offset from the length of the indicator?
-    // ideally if touching at or less than minimal magnitude, no lines are shown
+    if (canSwipe) {
+        GLKVector2 direction = GLKVector2Normalize(GLKVector2Make(touchPoint.x - touchBegan.x, touchPoint.y - touchBegan.y));
+        GLKVector2 force = GLKVector2MultiplyScalar(direction, SWIPE_FORCE);
+        if (direction.y <= 0) self.ball.physicsBody.velocity = CGVectorMake(0, 0);
+        [self.ball.physicsBody applyImpulse:CGVectorMake(force.x, force.y)];
+        canSwipe = NO;
+        return;
+    }
+    else if (!canShoot) return;
     
 
     [touchline removeFromParent];
@@ -98,7 +106,7 @@ const float MIN_INPUT = 35.0;
     
     if (distance > MIN_INPUT){
         
-        distance = (distance > self.frame.size.height/2) ? self.frame.size.height/2 : distance;
+        distance = (distance > self.frame.size.height/3) ? self.frame.size.height/3 : distance;
         
         SKSpriteNode *arrow = [SKSpriteNode spriteNodeWithImageNamed:@"arrow"];
         
@@ -131,8 +139,8 @@ const float MIN_INPUT = 35.0;
         [touchline2 setStrokeColor:[UIColor colorWithWhite:0 alpha:.1]];
         [self addChild:touchline2];
         
-        arrow.position = CGPointMake(2*touchBegan.x-touchPoint.x,
-                                    2*touchBegan.y-touchPoint.y);
+        arrow.position = CGPointMake(frontLineEnd.x,
+                                    frontLineEnd.y);
         arrow.xScale = .5f;
         arrow.yScale = .5f;
         arrow.zRotation = atan2f(direction.y, direction.x);
@@ -155,20 +163,19 @@ const float MIN_INPUT = 35.0;
     
     float distance = [self distanceFrom:touchBegan to:touchEnd];
     if (distance > MIN_INPUT){
-        distance = (distance > self.frame.size.height/2) ? self.frame.size.height/2 : distance;
+        distance = (distance > self.frame.size.height/3) ? self.frame.size.height/3 : distance;
         GLKVector2 direction = GLKVector2Normalize(GLKVector2Make(touchEnd.x - touchBegan.x, touchEnd.y - touchBegan.y));
-        float magnitude = -FORCE_MULT * 10 * powf(distance,.6);
+        float magnitude = -FORCE_MULT * powf(distance,.3);
         GLKVector2 force = GLKVector2MultiplyScalar(direction, magnitude);
-        [self.ball.physicsBody applyForce:CGVectorMake(force.x, force.y)];
+        [self.ball.physicsBody applyImpulse:CGVectorMake(force.x, force.y)];
+        canSwipe = YES;
     }
-        
-    // TO DO: disable touching until ball stops moving
-    
 }
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
     if ([self.ball isResting]){
+        canSwipe = NO;
         // go above ball if its resting
         float ydistance = self.ball.position.y - self.camera.position.y + self.frame.size.height*.45;
         self.camera.position = CGPointMake(self.camera.position.x, (float)MAX(self.camera.position.y + ydistance *.1, self.frame.size.height/2));
