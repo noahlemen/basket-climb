@@ -9,6 +9,8 @@
 #import <SpriteKit/SpriteKit.h>
 #import "Ball.h"
 #import "Map.h"
+#import "GameState.h"
+#import "EndGameScene.h"
 
 typedef enum : uint8_t {
     CollisionTypeBasket = 1,
@@ -23,5 +25,6 @@ typedef enum : uint8_t {
 @property (nonatomic) Map *map;
 @property (nonatomic) SKNode *camera;
 @property (nonatomic) Ball *ball;
+
 
 @end

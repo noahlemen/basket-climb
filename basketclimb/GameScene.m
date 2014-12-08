@@ -22,17 +22,63 @@ const float SWIPE_FORCE = 2.0;
     CGPoint touchEnd;
     SKShapeNode *touchline;
     SKShapeNode *touchline2;
+    SKLabelNode *score;
     BOOL canShoot;
     BOOL canSwipe;
+    BOOL gameOver;
 }
 
 -(id)initWithSize:(CGSize)size {
     if(self = [super initWithSize:size]){
-        [self startNewGame];
+        // Set background color and gravity
+        self.backgroundColor = [SKColor colorWithRed:0.769 green:0.945 blue:1.0 alpha:1.0];
+        self.physicsWorld.gravity = CGVectorMake(0.0f, -9.8f);
+        [GameState sharedInstance].score = 0;
+        gameOver = NO;
+        
+        /*
+        score = [SKLabelNode labelNodeWithFontNamed:@"Futura-Medium"];
+        score.fontSize = 30;
+        score.fontColor = [SKColor colorWithRed:0.184 green:0.36 blue:0.431 alpha:1.0];
+        score.position = CGPointMake(CGRectGetWidth(self.frame)-20.0f, CGRectGetHeight(self.frame)-40);
+        score.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
+        [score setText:@"0"];
+        [self addChild:score];*/
+        
+        // Add node for game world
+        self.world = [SKNode node];
+        
+        // Initialize and set-up the map node
+        self.map = [[Map alloc] init];
+        
+        self.camera = [SKNode node];
+        self.camera.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+        
+        // Create ball
+        self.ball = [[Ball alloc] init];
+        self.ball.xScale = .25;
+        self.ball.yScale = .25;
+        self.ball.name = @"ball";
+        self.ball.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+        [self.world addChild:self.ball];
+        self.ball.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.ball.frame.size.width/2.5];
+        self.ball.physicsBody.allowsRotation = NO;
+        self.ball.physicsBody.categoryBitMask = CollisionTypeBall;
+        self.ball.physicsBody.contactTestBitMask = CollisionTypeBasket;
+        
+        [self.world addChild:self.map];
+        [self.world addChild:self.camera];
+        [self addChild:self.world];
+        
+        self.anchorPoint = CGPointMake(.5, .5);
+        
+        [self centerOnNode:self.camera];
+        
+        self.physicsWorld.contactDelegate = self;
     }
     return self;
 }
-
+/*
 -(void)startNewGame {
     // Set background color and gravity
     self.backgroundColor = [SKColor colorWithRed:0.769 green:0.945 blue:1.0 alpha:1.0];
@@ -68,7 +114,7 @@ const float SWIPE_FORCE = 2.0;
     [self centerOnNode:self.camera];
     
     self.physicsWorld.contactDelegate = self;
-}
+}*/
 
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -192,6 +238,9 @@ const float SWIPE_FORCE = 2.0;
 }
 
 -(void)didFinishUpdate{
+    if (gameOver) {
+        return;
+    }
     // Update camera
     [self centerOnNode: self.camera];
     
@@ -203,6 +252,7 @@ const float SWIPE_FORCE = 2.0;
         
         // Generate more map if we've moved up half a screen height since last level generation
         self.map.currBasketHeight = self.ball.position.y;
+        [GameState sharedInstance].score += round(self.map.currBasketHeight / 19.0f);
         if ((self.map.currBasketHeight - self.map.madeBasketHeight) > self.map.screenHeight/2.0f) {
             [self generateHigherMap];
             
@@ -213,6 +263,11 @@ const float SWIPE_FORCE = 2.0;
                 }
             }];
         }
+    }
+    
+    // Check to see if ball has fallen too far and player dies
+    if(self.ball.touchingBasket == NO && self.ball.position.y < self.map.madeBasketHeight - self.map.screenHeight) {
+        [self endGame];
     }
 }
 
@@ -286,6 +341,21 @@ const float SWIPE_FORCE = 2.0;
         self.ball.touchingBasket = NO;
         self.ball.basketMade = NO;
     }
+}
+
+- (void) endGame
+{
+    // 1
+    gameOver = YES;
+    
+    // 2
+    // Save stars and high score
+    [[GameState sharedInstance] saveState];
+    
+    // 3
+    SKScene *endGameScene = [[EndGameScene alloc] initWithSize:self.size];
+    SKTransition *reveal = [SKTransition fadeWithDuration:0.5];
+    [self.view presentScene:endGameScene transition:reveal];
 }
 
 @end

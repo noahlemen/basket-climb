@@ -29,6 +29,8 @@
 		4FFF88D81A12A11900283B80 /* basketclimbTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF88D71A12A11900283B80 /* basketclimbTests.m */; };
 		E24347681A26B9C9007972D4 /* Map.m in Sources */ = {isa = PBXBuildFile; fileRef = E24347671A26B9C9007972D4 /* Map.m */; };
 		E253B63E1A2ED69000C5F743 /* Basket.m in Sources */ = {isa = PBXBuildFile; fileRef = E253B63D1A2ED69000C5F743 /* Basket.m */; };
+		E2CEDFCC1A3652810018DB7D /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = E2CEDFCB1A3652810018DB7D /* GameState.m */; };
+		E2CEDFD01A3655D00018DB7D /* EndGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = E2CEDFCF1A3655D00018DB7D /* EndGameScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +89,10 @@
 		E24347671A26B9C9007972D4 /* Map.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Map.m; sourceTree = "<group>"; };
 		E253B63C1A2ED69000C5F743 /* Basket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Basket.h; sourceTree = "<group>"; };
 		E253B63D1A2ED69000C5F743 /* Basket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Basket.m; sourceTree = "<group>"; };
+		E2CEDFCA1A3652810018DB7D /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
+		E2CEDFCB1A3652810018DB7D /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameState.m; sourceTree = "<group>"; };
+		E2CEDFCE1A3655D00018DB7D /* EndGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndGameScene.h; sourceTree = "<group>"; };
+		E2CEDFCF1A3655D00018DB7D /* EndGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndGameScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +184,10 @@
 				E24347671A26B9C9007972D4 /* Map.m */,
 				E253B63C1A2ED69000C5F743 /* Basket.h */,
 				E253B63D1A2ED69000C5F743 /* Basket.m */,
+				E2CEDFCA1A3652810018DB7D /* GameState.h */,
+				E2CEDFCB1A3652810018DB7D /* GameState.m */,
+				E2CEDFCE1A3655D00018DB7D /* EndGameScene.h */,
+				E2CEDFCF1A3655D00018DB7D /* EndGameScene.m */,
 				4FFF88C51A12A11800283B80 /* Main.storyboard */,
 				4FFF88C81A12A11900283B80 /* Images.xcassets */,
 				4FFF88CA1A12A11900283B80 /* LaunchScreen.xib */,
@@ -317,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F1145AB1A2E5E5600AFF728 /* easing.c in Sources */,
+				E2CEDFCC1A3652810018DB7D /* GameState.m in Sources */,
 				4F1145E01A2E5E9E00AFF728 /* SKTEffects.m in Sources */,
 				4F1145DC1A2E5E9E00AFF728 /* SKEmitterNode+SKTExtras.m in Sources */,
 				4F1145E11A2E5E9E00AFF728 /* SKTTimingFunctions.m in Sources */,
@@ -324,6 +335,7 @@
 				4FFF88C41A12A11800283B80 /* GameViewController.m in Sources */,
 				E24347681A26B9C9007972D4 /* Map.m in Sources */,
 				4FFF88BC1A12A11800283B80 /* AppDelegate.m in Sources */,
+				E2CEDFD01A3655D00018DB7D /* EndGameScene.m in Sources */,
 				4F1145DF1A2E5E9E00AFF728 /* SKTAudio.m in Sources */,
 				4FFF88BF1A12A11800283B80 /* GameScene.m in Sources */,
 				4F1145DB1A2E5E9E00AFF728 /* SKAction+SKTSpecialEffects.m in Sources */,
@@ -457,6 +469,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = basketclimb/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -475,6 +488,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = basketclimb/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
