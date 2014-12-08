@@ -25,6 +25,7 @@ typedef enum : uint8_t {
 @property (nonatomic) Map *map;
 @property (nonatomic) SKNode *camera;
 @property (nonatomic) Ball *ball;
+@property (nonatomic) SKLabelNode *score;
 
 
 @end

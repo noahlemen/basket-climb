@@ -22,7 +22,6 @@ const float SWIPE_FORCE = 2.0;
     CGPoint touchEnd;
     SKShapeNode *touchline;
     SKShapeNode *touchline2;
-    SKLabelNode *score;
     BOOL canShoot;
     BOOL canSwipe;
     BOOL gameOver;
@@ -37,13 +36,14 @@ const float SWIPE_FORCE = 2.0;
         gameOver = NO;
         
         /*
-        score = [SKLabelNode labelNodeWithFontNamed:@"Futura-Medium"];
-        score.fontSize = 30;
-        score.fontColor = [SKColor colorWithRed:0.184 green:0.36 blue:0.431 alpha:1.0];
-        score.position = CGPointMake(CGRectGetWidth(self.frame)-20.0f, CGRectGetHeight(self.frame)-40);
-        score.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
-        [score setText:@"0"];
-        [self addChild:score];*/
+        self.score = [SKLabelNode node];
+        self.score.fontName = @"Futura-Medium";
+        self.score.fontSize = 80;
+        self.score.fontColor = [SKColor colorWithRed:0.184 green:0.36 blue:0.431 alpha:1.0];
+        self.score.position = CGPointMake(CGRectGetWidth(self.frame)-20.0f, CGRectGetHeight(self.frame)-40);
+        self.score.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
+        [self.score setText:@"0"];
+        [self addChild:self.score];*/
         
         // Add node for game world
         self.world = [SKNode node];
@@ -78,44 +78,6 @@ const float SWIPE_FORCE = 2.0;
     }
     return self;
 }
-/*
--(void)startNewGame {
-    // Set background color and gravity
-    self.backgroundColor = [SKColor colorWithRed:0.769 green:0.945 blue:1.0 alpha:1.0];
-    self.physicsWorld.gravity = CGVectorMake(0.0f, -9.8f);
-    
-    // Add node for game world
-    self.world = [SKNode node];
-    
-    // Initialize and set-up the map node
-    self.map = [[Map alloc] init];
-    
-    self.camera = [SKNode node];
-    self.camera.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
-    
-    // Create ball
-    self.ball = [[Ball alloc] init];
-    self.ball.xScale = .25;
-    self.ball.yScale = .25;
-    self.ball.name = @"ball";
-    self.ball.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
-    [self.world addChild:self.ball];
-    self.ball.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.ball.frame.size.width/2.5];
-    self.ball.physicsBody.allowsRotation = NO;
-    self.ball.physicsBody.categoryBitMask = CollisionTypeBall;
-    self.ball.physicsBody.contactTestBitMask = CollisionTypeBasket;
-    
-    [self.world addChild:self.map];
-    [self.world addChild:self.camera];
-    [self addChild:self.world];
-    
-    self.anchorPoint = CGPointMake(.5, .5);
-    
-    [self centerOnNode:self.camera];
-    
-    self.physicsWorld.contactDelegate = self;
-}*/
-
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
@@ -127,8 +89,6 @@ const float SWIPE_FORCE = 2.0;
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
-    
-    
     
     UITouch *touch = [touches anyObject];
     CGPoint touchPoint = [touch locationInNode:self];
@@ -225,7 +185,8 @@ const float SWIPE_FORCE = 2.0;
         // go above ball if its resting
         float ydistance = self.ball.position.y - self.camera.position.y + self.frame.size.height*.45;
         self.camera.position = CGPointMake(self.camera.position.x, (float)MAX(self.camera.position.y + ydistance *.1, self.frame.size.height/2));
-    }else{
+    }
+    else {
         float ydistance = self.ball.position.y - self.camera.position.y;
         float distanceFromRest = self.ball.position.y - self.ball.lastRestingPosition.y;
         if (fabsf(ydistance) > self.frame.size.height/3
@@ -234,7 +195,6 @@ const float SWIPE_FORCE = 2.0;
             self.camera.position = CGPointMake(self.camera.position.x, (float)MAX(self.camera.position.y + ydistance *.05, self.frame.size.height/2));
         }
     }
-
 }
 
 -(void)didFinishUpdate{
@@ -345,14 +305,12 @@ const float SWIPE_FORCE = 2.0;
 
 - (void) endGame
 {
-    // 1
     gameOver = YES;
-    
-    // 2
-    // Save stars and high score
+
+    // Save high score
     [[GameState sharedInstance] saveState];
     
-    // 3
+    // Show score screen
     SKScene *endGameScene = [[EndGameScene alloc] initWithSize:self.size];
     SKTransition *reveal = [SKTransition fadeWithDuration:0.5];
     [self.view presentScene:endGameScene transition:reveal];
