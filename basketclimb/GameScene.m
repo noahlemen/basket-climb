@@ -185,7 +185,15 @@ const float MIN_INPUT = 35.0;
 }
 
 -(void)didFinishUpdate{
+    // Update camera
     [self centerOnNode: self.camera];
+    
+    //Check to see if a basket has been made
+    if (self.ball.touchingBasket && [self.ball isResting])
+    {
+        NSLog(@"Basket has been made");
+        [self generateHigherMap];
+    }
 }
 
 -(float)distanceFrom:(CGPoint)from to:(CGPoint)to{
@@ -204,9 +212,10 @@ const float MIN_INPUT = 35.0;
 }
 
 
--(void)extendMap
+-(void)generateHigherMap
 {
-    // call 
+    // this will generate the higher map
+    self.ball.touchingBasket = NO;
 }
 
 - (void)didBeginContact:(SKPhysicsContact *)contact
@@ -228,10 +237,8 @@ const float MIN_INPUT = 35.0;
     // IF one body is the basket and the other is the ball, do something
     if ((firstBody.categoryBitMask & CollisionTypeBasket) != 0 && (secondBody.categoryBitMask & CollisionTypeBall) != 0)
     {
-        NSLog(@"Basket made");
+        // set ball touching basket
         self.ball.touchingBasket = YES;
-        
-        //NSLog(@"Basket Made");
     }
 }
 
@@ -254,7 +261,7 @@ const float MIN_INPUT = 35.0;
     // IF one body is the basket and the other is the ball, do something
     if ((firstBody.categoryBitMask & CollisionTypeBasket) != 0 && (secondBody.categoryBitMask & CollisionTypeBall) != 0)
     {
-        NSLog(@"Contact ended");
+        // set ball no longer touching basket
         self.ball.touchingBasket = NO;
     }
 }
