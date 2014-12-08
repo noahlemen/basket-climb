@@ -15,9 +15,13 @@
     SKColor *wallColor;
     int numBaskets;
     wallType highestBasket;
-    CGFloat screenHeight;
     BOOL firstLevel;
 }
+@synthesize prevHeightBuilt;
+@synthesize screenWidth;
+@synthesize screenHeight;
+@synthesize madeBasketHeight;
+@synthesize currBasketHeight;
 
 -(id) init
 {
@@ -27,7 +31,10 @@
         srandom((unsigned int)time(NULL));
         highestBasket = random() % 2;
         screenHeight = CGRectGetHeight([UIScreen mainScreen].bounds);
+        screenWidth = CGRectGetWidth([UIScreen mainScreen].bounds);
+        prevHeightBuilt = 0.0f;
         firstLevel = YES;
+        madeBasketHeight = 0.0f;
         
         // Get size of screen
         CGRect screenRect = [UIScreen mainScreen].bounds;
@@ -53,19 +60,25 @@
 
 -(void)createNextGameSection
 {
-    CGRect screenRect = [UIScreen mainScreen].bounds;
-    CGFloat width = CGRectGetWidth(screenRect);
-    [self drawWall:left_wall withScreenBound:screenRect];
-    [self drawWall:right_wall withScreenBound:screenRect];
-    [self createBasketsforSectWithHeight:0 andWidth:width];
-    [self createBasketsforSectWithHeight:screenHeight andWidth:width];
-    [self createBasketsforSectWithHeight:screenHeight*2 andWidth:width];
-    
+    // If this is the first time a section is being made, make two
+    if (firstLevel) {
+        [self drawWall:left_wall];
+        [self drawWall:right_wall];
+        [self createBasketsforNewSection];
+        [self drawWall:left_wall];
+        [self drawWall:right_wall];
+        [self createBasketsforNewSection];
+    }
+    else { // just make 1 level
+        [self drawWall:left_wall];
+        [self drawWall:right_wall];
+        [self createBasketsforNewSection];
+    }
 }
 
--(void)drawWall:(wallType)wallSide withScreenBound:(CGRect)screenRect
+-(void)drawWall:(wallType)wallSide
 {
-    CGMutablePathRef path = [self createPathWithPoints:0 andScreenBounds:screenRect onWall:wallSide];
+    CGMutablePathRef path = [self createPathWithPoints:0 onWall:wallSide];
     SKShapeNode *wall = [[SKShapeNode alloc] init];
     wall.path = path;
     wall.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:path];
@@ -77,16 +90,17 @@
     
 }
 
--(void)createBasketsforSectWithHeight:(CGFloat)height
-                             andWidth:(CGFloat)width
+-(void)createBasketsforNewSection
 {
+    CGFloat height = prevHeightBuilt;
+    CGFloat width = screenWidth;
     [self numBasketsforNextSection]; // set number of baskets for next section
     int d1, d2, d3, d4, maxDistance, side;
     side = random() % 3; // how to position baskets on sides
+    maxDistance = (screenHeight - 250) / numBaskets;
     
     // get distances
     if (firstLevel) {
-        maxDistance = (screenHeight - 250) / numBaskets;
         d1 = random() % maxDistance + 100 + height;
         firstLevel = NO;
     }
@@ -193,6 +207,7 @@
             }
         }
     }
+    prevHeightBuilt = prevHeightBuilt + screenHeight;
 }
 
 -(void)addBasketOnWall:(wallType)wall
@@ -215,34 +230,34 @@
 
 /* creates a path with number of visible "jutting out" points */
 -(CGMutablePathRef)createPathWithPoints:(int)numPoints
-                        andScreenBounds:(CGRect)screenRect
                                  onWall:(wallType)wall
 {
     // This will somehow need to be procedurally done
     int totalPoints = numPoints + 4;
     CGPoint points[totalPoints];
+    int h = prevHeightBuilt;
+    h++;// inc for correct generation
     
     if(wall == left_wall) {
         for(int i = 0; i < numPoints; i++) {
-            points[i] = CGPointMake(25.0f + i*5.0f, CGRectGetMidY(screenRect) + i*50.0f);
+            //points[i] = CGPointMake(25.0f + i*5.0f, (screenHeight+prevHeightBuilt)/2.0f + i*50.0f));
         }
-        points[totalPoints-4] = CGPointMake(10.0f, CGRectGetHeight(screenRect)*3.0f);
-        points[totalPoints-3] = CGPointMake(0.0f, CGRectGetHeight(screenRect)*3.0f);
-        points[totalPoints-2] = CGPointMake(0.0f, 0.0f);
-        points[totalPoints-1] = CGPointMake(10.0f, 0.0f);
+        points[totalPoints-4] = CGPointMake(10.0f, (screenHeight+prevHeightBuilt));
+        points[totalPoints-3] = CGPointMake(0.0f, (screenHeight+prevHeightBuilt));
+        points[totalPoints-2] = CGPointMake(0.0f, 0.0f + prevHeightBuilt);
+        points[totalPoints-1] = CGPointMake(10.0f, 0.0f + prevHeightBuilt);
     }
     else { // Right wall
         for(int i = 0; i < numPoints; i++) {
-            points[i] = CGPointMake(CGRectGetWidth(screenRect) - 25.0f - i*10.0f, CGRectGetMidY(screenRect) - 80.0f + i*70.0f);
+            //points[i] = CGPointMake(screenWidth - 25.0f - i*10.0f, (screenHeight/2.0 - 80.0f + i*70.0f));
         }
-        points[totalPoints-4] = CGPointMake(CGRectGetWidth(screenRect) - 10.0f, CGRectGetHeight(screenRect)*3.0f);
-        points[totalPoints-3] = CGPointMake(CGRectGetWidth(screenRect), CGRectGetHeight(screenRect)*3.0f);
-        points[totalPoints-2] = CGPointMake(CGRectGetWidth(screenRect), 0.0f);
-        points[totalPoints-1] = CGPointMake(CGRectGetWidth(screenRect) - 10.0f, 0.0f);
+        points[totalPoints-4] = CGPointMake(screenWidth - 10.0f, (screenHeight+prevHeightBuilt));
+        points[totalPoints-3] = CGPointMake(screenWidth, (screenHeight+prevHeightBuilt));
+        points[totalPoints-2] = CGPointMake(screenWidth, 0.0f + prevHeightBuilt);
+        points[totalPoints-1] = CGPointMake(screenWidth - 10.0f, 0.0f + prevHeightBuilt);
     }
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathAddLines(path, NULL, points, totalPoints);
-    
     
     return path;
 }

@@ -7,7 +7,6 @@
 //
 
 #import "GameScene.h"
-#import "Map.h"
 
 const float FORCE_MULT = 1.5;
 const float MIN_INPUT = 35.0;
@@ -23,7 +22,6 @@ const float SWIPE_FORCE = 2.0;
     CGPoint touchEnd;
     SKShapeNode *touchline;
     SKShapeNode *touchline2;
-    float basketHeight;
     BOOL canShoot;
     BOOL canSwipe;
 }
@@ -196,13 +194,16 @@ const float SWIPE_FORCE = 2.0;
     [self centerOnNode: self.camera];
     
     //Check to see if a basket has been made
-    if (self.ball.touchingBasket && [self.ball isResting])
-    {
+    if (self.ball.touchingBasket && [self.ball isResting]) {
         self.ball.basketMade = YES;
         self.ball.touchingBasket = NO; /* This is kinda dumb, it's still touching basket 
-                                        but need to turn off so this doesn't get calleg again. */
-        NSLog(@"Basket has been made");
-        [self generateHigherMap];
+                                        but need to turn off so this doesn't get called again. */
+        
+        // Generate more map if we've moved up one screen height since last level generation
+        self.map.currBasketHeight = self.ball.position.y;
+        if ((self.map.currBasketHeight - self.map.madeBasketHeight) > self.map.screenHeight/2.0) {
+            [self generateHigherMap];
+        }
     }
 }
 
@@ -224,8 +225,9 @@ const float SWIPE_FORCE = 2.0;
 
 -(void)generateHigherMap
 {
-    // this will generate the higher map
-    self.ball.touchingBasket = NO;
+    // Create next game section and set madeBasketheight to current basket height
+    [self.map createNextGameSection];
+    self.map.madeBasketHeight = self.map.currBasketHeight;
 }
 
 - (void)didBeginContact:(SKPhysicsContact *)contact

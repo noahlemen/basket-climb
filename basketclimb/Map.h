@@ -15,9 +15,14 @@ typedef enum {
 
 @interface Map : SKNode
 
+@property (nonatomic) CGFloat prevHeightBuilt;
+@property (nonatomic) CGFloat screenHeight;
+@property (nonatomic) CGFloat screenWidth;
+@property (nonatomic) CGFloat madeBasketHeight;
+@property (nonatomic) CGFloat currBasketHeight;
+
 /* creates a path with number of visible "jutting out" points" */
 -(CGMutablePathRef)createPathWithPoints:(int)numPoints
-                        andScreenBounds:(CGRect)screenRect
                              onWall:(wallType)wall;
 
 /* Releases CGMutabalePathRef resources */
