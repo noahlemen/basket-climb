@@ -198,6 +198,9 @@ const float SWIPE_FORCE = 2.0;
     //Check to see if a basket has been made
     if (self.ball.touchingBasket && [self.ball isResting])
     {
+        self.ball.basketMade = YES;
+        self.ball.touchingBasket = NO; /* This is kinda dumb, it's still touching basket 
+                                        but need to turn off so this doesn't get calleg again. */
         NSLog(@"Basket has been made");
         [self generateHigherMap];
     }
@@ -270,6 +273,7 @@ const float SWIPE_FORCE = 2.0;
     {
         // set ball no longer touching basket
         self.ball.touchingBasket = NO;
+        self.ball.basketMade = NO;
     }
 }
 

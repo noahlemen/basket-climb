@@ -12,6 +12,7 @@
 
 @property CGPoint lastRestingPosition;
 @property BOOL touchingBasket;
+@property BOOL basketMade;
 
 - (Ball *) init;
 
