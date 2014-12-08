@@ -94,7 +94,6 @@
     wall.fillColor = wallColor;
     [self addChild:wall];
     [self releasePath:path];
-    NSLog(@"Frame pos = (%f, %f)", wall.frame.origin.x, wall.frame.origin.y);
 }
 
 -(void)createBasketsforNewSection

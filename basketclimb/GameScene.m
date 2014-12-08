@@ -28,45 +28,47 @@ const float SWIPE_FORCE = 2.0;
 
 -(id)initWithSize:(CGSize)size {
     if(self = [super initWithSize:size]){
-        // Set background color and gravity
-        self.backgroundColor = [SKColor colorWithRed:0.769 green:0.945 blue:1.0 alpha:1.0];
-        self.physicsWorld.gravity = CGVectorMake(0.0f, -9.8f);
-        
-        // Add node for game world
-        self.world = [SKNode node];
-        
-        // Initialize and set-up the map node
-        self.map = [[Map alloc] init];
-        
-        self.camera = [SKNode node];
-        self.camera.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
-        
-        // Create ball
-        self.ball = [[Ball alloc] init];
-        self.ball.xScale = .25;
-        self.ball.yScale = .25;
-        self.ball.name = @"ball";
-        self.ball.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
-        [self.world addChild:self.ball];
-        self.ball.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.ball.frame.size.width/2.5];
-        self.ball.physicsBody.allowsRotation = NO;
-        self.ball.physicsBody.categoryBitMask = CollisionTypeBall;
-        self.ball.physicsBody.contactTestBitMask = CollisionTypeBasket;
-        
-        [self.world addChild:self.map];
-        [self.world addChild:self.camera];
-        [self addChild:self.world];
-        
-        self.anchorPoint = CGPointMake(.5, .5);
-        
-        [self centerOnNode:self.camera];
-        
-        self.physicsWorld.contactDelegate = self;
-        
+        [self startNewGame];
     }
     return self;
 }
 
+-(void)startNewGame {
+    // Set background color and gravity
+    self.backgroundColor = [SKColor colorWithRed:0.769 green:0.945 blue:1.0 alpha:1.0];
+    self.physicsWorld.gravity = CGVectorMake(0.0f, -9.8f);
+    
+    // Add node for game world
+    self.world = [SKNode node];
+    
+    // Initialize and set-up the map node
+    self.map = [[Map alloc] init];
+    
+    self.camera = [SKNode node];
+    self.camera.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+    
+    // Create ball
+    self.ball = [[Ball alloc] init];
+    self.ball.xScale = .25;
+    self.ball.yScale = .25;
+    self.ball.name = @"ball";
+    self.ball.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+    [self.world addChild:self.ball];
+    self.ball.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.ball.frame.size.width/2.5];
+    self.ball.physicsBody.allowsRotation = NO;
+    self.ball.physicsBody.categoryBitMask = CollisionTypeBall;
+    self.ball.physicsBody.contactTestBitMask = CollisionTypeBasket;
+    
+    [self.world addChild:self.map];
+    [self.world addChild:self.camera];
+    [self addChild:self.world];
+    
+    self.anchorPoint = CGPointMake(.5, .5);
+    
+    [self centerOnNode:self.camera];
+    
+    self.physicsWorld.contactDelegate = self;
+}
 
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -193,31 +195,24 @@ const float SWIPE_FORCE = 2.0;
     // Update camera
     [self centerOnNode: self.camera];
     
-    //Check to see if a basket has been made
+    //Check to see if a basket has been made (completed)
     if (self.ball.touchingBasket && [self.ball isResting]) {
         self.ball.basketMade = YES;
         self.ball.touchingBasket = NO; /* This is kinda dumb, it's still touching basket 
                                         but need to turn off so this doesn't get called again. */
         
-        // Generate more map if we've moved up one screen height since last level generation
+        // Generate more map if we've moved up half a screen height since last level generation
         self.map.currBasketHeight = self.ball.position.y;
         if ((self.map.currBasketHeight - self.map.madeBasketHeight) > self.map.screenHeight/2.0f) {
             [self generateHigherMap];
             
-
-
+            // Delete nodes that are two "levels" down
             [self.map enumerateChildNodesWithName:@"*" usingBlock:^(SKNode *node, BOOL *stop) {
-                /*if (node.physicsBody.categoryBitMask == CollisionTypeBasket) {
-                    printf("hi\n");
-                }*/
                 if (node.position.y < (self.map.currBasketHeight - self.map.screenHeight*2.0f)) {
                     [node removeFromParent];
                 }
             }];
-
         }
-        
-        
     }
 }
 
