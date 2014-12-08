@@ -80,14 +80,21 @@
 {
     CGMutablePathRef path = [self createPathWithPoints:0 onWall:wallSide];
     SKShapeNode *wall = [[SKShapeNode alloc] init];
+    if (wallSide == left_wall) {
+        wall.position = CGPointMake(0, prevHeightBuilt);
+    }
+    else {
+        wall.position = CGPointMake(screenWidth - 10.0f, prevHeightBuilt);
+    }
     wall.path = path;
     wall.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:path];
     wall.physicsBody.dynamic = NO;
+    wall.physicsBody.categoryBitMask = CollisionTypeWall;
     wall.strokeColor = wallColor;
     wall.fillColor = wallColor;
     [self addChild:wall];
     [self releasePath:path];
-    
+    NSLog(@"Frame pos = (%f, %f)", wall.frame.origin.x, wall.frame.origin.y);
 }
 
 -(void)createBasketsforNewSection
@@ -242,19 +249,19 @@
         for(int i = 0; i < numPoints; i++) {
             //points[i] = CGPointMake(25.0f + i*5.0f, (screenHeight+prevHeightBuilt)/2.0f + i*50.0f));
         }
-        points[totalPoints-4] = CGPointMake(10.0f, (screenHeight+prevHeightBuilt));
-        points[totalPoints-3] = CGPointMake(0.0f, (screenHeight+prevHeightBuilt));
-        points[totalPoints-2] = CGPointMake(0.0f, 0.0f + prevHeightBuilt);
-        points[totalPoints-1] = CGPointMake(10.0f, 0.0f + prevHeightBuilt);
+        points[totalPoints-4] = CGPointMake(10.0f, (screenHeight));
+        points[totalPoints-3] = CGPointMake(0.0f, (screenHeight));
+        points[totalPoints-2] = CGPointMake(0.0f, 0.0f);
+        points[totalPoints-1] = CGPointMake(10.0f, 0.0f);
     }
     else { // Right wall
         for(int i = 0; i < numPoints; i++) {
             //points[i] = CGPointMake(screenWidth - 25.0f - i*10.0f, (screenHeight/2.0 - 80.0f + i*70.0f));
         }
-        points[totalPoints-4] = CGPointMake(screenWidth - 10.0f, (screenHeight+prevHeightBuilt));
-        points[totalPoints-3] = CGPointMake(screenWidth, (screenHeight+prevHeightBuilt));
-        points[totalPoints-2] = CGPointMake(screenWidth, 0.0f + prevHeightBuilt);
-        points[totalPoints-1] = CGPointMake(screenWidth - 10.0f, 0.0f + prevHeightBuilt);
+        points[totalPoints-4] = CGPointMake(10.0f, (screenHeight));
+        points[totalPoints-3] = CGPointMake(0.0f, (screenHeight));
+        points[totalPoints-2] = CGPointMake(0.0f, 0.0f);
+        points[totalPoints-1] = CGPointMake(10.0f, 0.0f);
     }
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathAddLines(path, NULL, points, totalPoints);

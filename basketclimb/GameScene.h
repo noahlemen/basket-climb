@@ -14,7 +14,7 @@ typedef enum : uint8_t {
     CollisionTypeBasket = 1,
     CollisionTypeBall = 2,
     CollisionTypeFloor = 4,
-    CollisionTypeWAll = 8
+    CollisionTypeWall = 8
 }ClimbColliderType;
 
 @interface GameScene : SKScene

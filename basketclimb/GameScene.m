@@ -201,9 +201,23 @@ const float SWIPE_FORCE = 2.0;
         
         // Generate more map if we've moved up one screen height since last level generation
         self.map.currBasketHeight = self.ball.position.y;
-        if ((self.map.currBasketHeight - self.map.madeBasketHeight) > self.map.screenHeight/2.0) {
+        if ((self.map.currBasketHeight - self.map.madeBasketHeight) > self.map.screenHeight/2.0f) {
             [self generateHigherMap];
+            
+
+
+            [self.map enumerateChildNodesWithName:@"*" usingBlock:^(SKNode *node, BOOL *stop) {
+                /*if (node.physicsBody.categoryBitMask == CollisionTypeBasket) {
+                    printf("hi\n");
+                }*/
+                if (node.position.y < (self.map.currBasketHeight - self.map.screenHeight*2.0f)) {
+                    [node removeFromParent];
+                }
+            }];
+
         }
+        
+        
     }
 }
 
