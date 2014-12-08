@@ -90,7 +90,7 @@ const float SWIPE_FORCE = 2.0;
     if (canSwipe) {
         GLKVector2 direction = GLKVector2Normalize(GLKVector2Make(touchPoint.x - touchBegan.x, touchPoint.y - touchBegan.y));
         GLKVector2 force = GLKVector2MultiplyScalar(direction, SWIPE_FORCE);
-        //self.ball.physicsBody.velocity = CGVectorMake(0, 0);
+        if (direction.y <= 0) self.ball.physicsBody.velocity = CGVectorMake(0, 0);
         [self.ball.physicsBody applyImpulse:CGVectorMake(force.x, force.y)];
         canSwipe = NO;
         return;
