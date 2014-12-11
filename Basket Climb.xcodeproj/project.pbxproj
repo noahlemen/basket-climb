@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F900DBE1A39FDA20044D50D /* Cloud.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F900DBD1A39FDA20044D50D /* Cloud.m */; };
 		4FA225AC1A300F2F00701027 /* Ball.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA225AB1A300F2F00701027 /* Ball.m */; };
 		4FFF88B91A12A11800283B80 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF88B81A12A11800283B80 /* main.m */; };
 		4FFF88BC1A12A11800283B80 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF88BB1A12A11800283B80 /* AppDelegate.m */; };
@@ -34,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F900DBC1A39FDA20044D50D /* Cloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cloud.h; sourceTree = "<group>"; };
+		4F900DBD1A39FDA20044D50D /* Cloud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cloud.m; sourceTree = "<group>"; };
 		4FA225AA1A300F2F00701027 /* Ball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ball.h; sourceTree = "<group>"; };
 		4FA225AB1A300F2F00701027 /* Ball.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ball.m; sourceTree = "<group>"; };
 		4FFF88B31A12A11800283B80 /* Basket Climb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Basket Climb.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +108,8 @@
 				4FA225AB1A300F2F00701027 /* Ball.m */,
 				4FFF88BD1A12A11800283B80 /* GameScene.h */,
 				4FFF88BE1A12A11800283B80 /* GameScene.m */,
+				4F900DBC1A39FDA20044D50D /* Cloud.h */,
+				4F900DBD1A39FDA20044D50D /* Cloud.m */,
 				4FFF88C01A12A11800283B80 /* GameScene.sks */,
 				4FFF88C21A12A11800283B80 /* GameViewController.h */,
 				4FFF88C31A12A11800283B80 /* GameViewController.m */,
@@ -255,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2CEDFCC1A3652810018DB7D /* GameState.m in Sources */,
+				4F900DBE1A39FDA20044D50D /* Cloud.m in Sources */,
 				4FFF88C41A12A11800283B80 /* GameViewController.m in Sources */,
 				E24347681A26B9C9007972D4 /* Map.m in Sources */,
 				4FFF88BC1A12A11800283B80 /* AppDelegate.m in Sources */,

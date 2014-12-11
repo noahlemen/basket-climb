@@ -220,7 +220,7 @@
             atPosition:(CGPoint)position
               withSize:(CGFloat)size
 {
-    size = size + ((float)rand()/RAND_MAX);
+    size = size + ((float)rand()/RAND_MAX/2);
     Basket *aBasket = [Basket createBasketOnWall:wall withColor:wallColor andOffset:30.0f andSize:size];
     aBasket.position = position;
     [self addChild:aBasket];

@@ -7,6 +7,7 @@
 //
 
 #import "GameScene.h"
+#import "Cloud.h"
 
 const float FORCE_MULT = 1.5;
 const float MIN_INPUT = 35.0;
@@ -25,6 +26,7 @@ const float SWIPE_FORCE = 2.0;
     BOOL canShoot;
     BOOL canSwipe;
     BOOL gameOver;
+    NSMutableArray *clouds;
 }
 
 -(id)initWithSize:(CGSize)size {
@@ -53,6 +55,14 @@ const float SWIPE_FORCE = 2.0;
         
         self.camera = [SKNode node];
         self.camera.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+        
+        clouds = [[NSMutableArray alloc] init];
+        [clouds addObject:[[Cloud alloc] initWithPosition:CGPointMake(50, 20)]];
+        [clouds addObject:[[Cloud alloc] initWithPosition:CGPointMake(-25, 150)]];
+        for (Cloud *cloud in clouds){
+            [self addChild:cloud];
+        }
+        
         
         // Create ball
         self.ball = [[Ball alloc] init];
@@ -238,6 +248,13 @@ const float SWIPE_FORCE = 2.0;
 }
 
 -(void)didSimulatePhysics{
+    if (gameOver) {
+        return;
+    }
+    for (Cloud *cloud in clouds){
+        [cloud updatePositionFromCamera:self.camera];
+    }
+    
     
 }
 
