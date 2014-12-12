@@ -57,9 +57,9 @@ const float SWIPE_FORCE = 2.0;
         self.camera.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
         
         clouds = [[NSMutableArray alloc] init];
-        for (int i = 0; i < 2500; i++){
+        for (int i = 1; i <= 2500; i++){
             float x = arc4random()%(int)self.frame.size.width - self.frame.size.width/2;
-            float y = i * self.frame.size.height/4 + arc4random()%((int)self.frame.size.height/2) - self.frame.size.height/4;
+            float y = i * self.frame.size.height/3 + arc4random()%((int)self.frame.size.height/2) - self.frame.size.height/4;
             [clouds addObject:[[Cloud alloc] initWithPosition:CGPointMake(x, y)]];
         }
         for (Cloud *cloud in clouds){
