@@ -17,11 +17,14 @@
     if (self = [super initWithSize:size]) {
         self.backgroundColor = [SKColor colorWithRed:0.769 green:0.945 blue:1.0 alpha:1.0];
         
+        // Get size of screen
+        CGRect screenRect = [UIScreen mainScreen].bounds;
+        
         // Score
         SKLabelNode *score = [SKLabelNode labelNodeWithFontNamed:@"Futura-Medium"];
         score.fontSize = 60;
         score.fontColor = [SKColor colorWithRed:0.184 green:0.36 blue:0.431 alpha:1.0];;
-        score.position = CGPointMake(160, 300);
+        score.position = CGPointMake(CGRectGetMidX(screenRect), CGRectGetMidY(screenRect) + 50.f);
         score.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
         [score setText:[NSString stringWithFormat:@"%d", [GameState sharedInstance].score]];
         [self addChild:score];
@@ -30,7 +33,7 @@
         SKLabelNode *highScore = [SKLabelNode labelNodeWithFontNamed:@"Futura-Medium"];
         highScore.fontSize = 30;
         highScore.fontColor = [SKColor colorWithRed:0.184 green:0.36 blue:0.431 alpha:1.0];;
-        highScore.position = CGPointMake(160, 150);
+        highScore.position = CGPointMake(CGRectGetMidX(screenRect), CGRectGetMidY(screenRect) - 50.f);
         highScore.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
         [highScore setText:[NSString stringWithFormat:@"High Score: %d", [GameState sharedInstance].highScore]];
         [self addChild:highScore];
@@ -39,7 +42,7 @@
         SKLabelNode *tryAgain = [SKLabelNode labelNodeWithFontNamed:@"Futura-Medium"];
         tryAgain.fontSize = 30;
         tryAgain.fontColor = [SKColor blackColor];
-        tryAgain.position = CGPointMake(160, 50);
+        tryAgain.position = CGPointMake(CGRectGetMidX(screenRect), CGRectGetMidY(screenRect) - 150.f);
         tryAgain.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
         [tryAgain setText:@"Tap To Try Again"];
         [self addChild:tryAgain];
