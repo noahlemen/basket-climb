@@ -15,12 +15,12 @@
 - (Cloud *)initWithPosition:(CGPoint)position{
     self = [super initWithImageNamed:@"cloud"];
     if (self){
-        float random = arc4random()%10 + 1; // random int 1-10
+        float random = arc4random()%5 + 1; // random int 1-5
         NSLog(@"%f", random);
-        self.zPosition = -random/10;
-        self.alpha = .75/random;
-        self.xScale = MAX(1/random, .4);
-        self.yScale = MAX(1/random, .4);
+        self.zPosition = -(random+2)/10; // (-0.3)-(-0.7) (near-far)
+        self.alpha = -.3/self.zPosition; // 1.0-.42 (near-far)
+        self.xScale = -.3/self.zPosition;
+        self.yScale = -.3/self.zPosition;
         self.position = position;
         realY = position.y;
     }
