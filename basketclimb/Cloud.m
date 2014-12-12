@@ -19,8 +19,8 @@
         NSLog(@"%f", random);
         self.zPosition = -random/10;
         self.alpha = .75/random;
-        self.xScale = 1/random;
-        self.yScale = 1/random;
+        self.xScale = MAX(1/random, .4);
+        self.yScale = MAX(1/random, .4);
         self.position = position;
         realY = position.y;
     }
