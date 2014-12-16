@@ -8,12 +8,16 @@
 
 #import "GameScene.h"
 #import "Cloud.h"
+#import "SoundManager.h"
 
 const float FORCE_MULT = 1.5;
 const float MIN_INPUT = 35.0;
 const float SWIPE_FORCE = 2.0;
 
 @interface GameScene() <SKPhysicsContactDelegate>
+{
+    SoundManager *singletonPlayer;
+}
 
 @end
 
@@ -37,6 +41,8 @@ const float SWIPE_FORCE = 2.0;
         [GameState sharedInstance].score = 0;
         gameOver = NO;
         
+        singletonPlayer = [SoundManager sharedManager];
+
         /*
         self.score = [SKLabelNode node];
         self.score.fontName = @"Futura-Medium";
@@ -225,6 +231,14 @@ const float SWIPE_FORCE = 2.0;
         
         // Generate more map if we've moved up half a screen height since last level generation
         self.map.currBasketHeight = self.ball.position.y;
+        
+        // Play basket made sound
+        if (self.map.currBasketHeight > self.map.madeBasketHeight){
+            // play completed basket sound
+            //[self runAction:[SKAction playSoundFileNamed:@"BasketMade.wav" waitForCompletion:NO]];
+            [[SoundManager sharedManager] playSound:@"BasketMade" ofType:@"wav"];
+        }
+        
         [GameState sharedInstance].score += round(self.map.currBasketHeight / 19.0f);
         if ((self.map.currBasketHeight - self.map.madeBasketHeight) > self.map.screenHeight/2.0f) {
             [self generateHigherMap];
@@ -326,6 +340,7 @@ const float SWIPE_FORCE = 2.0;
 - (void) endGame
 {
     gameOver = YES;
+    [[SoundManager sharedManager] playSound:@"Death" ofType:@"wav"];
 
     // Save high score
     [[GameState sharedInstance] saveState];
