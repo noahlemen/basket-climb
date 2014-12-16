@@ -94,6 +94,8 @@ const float SWIPE_FORCE = 2.0;
         [self centerOnNode:self.camera];
         
         self.physicsWorld.contactDelegate = self;
+        
+        [[SoundManager sharedManager] playSound:@"Start" ofType:@"wav"];
     }
     return self;
 }

@@ -22,8 +22,8 @@
 		E253B63E1A2ED69000C5F743 /* Basket.m in Sources */ = {isa = PBXBuildFile; fileRef = E253B63D1A2ED69000C5F743 /* Basket.m */; };
 		E27E6DA61A3FECC60095D5A7 /* BasketMade.wav in Resources */ = {isa = PBXBuildFile; fileRef = E27E6DA31A3FECC60095D5A7 /* BasketMade.wav */; };
 		E27E6DA71A3FECC60095D5A7 /* Death.wav in Resources */ = {isa = PBXBuildFile; fileRef = E27E6DA41A3FECC60095D5A7 /* Death.wav */; };
-		E27E6DA81A3FECC60095D5A7 /* Death2.wav in Resources */ = {isa = PBXBuildFile; fileRef = E27E6DA51A3FECC60095D5A7 /* Death2.wav */; };
 		E27E6DB11A3FF2AC0095D5A7 /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E27E6DB01A3FF2AC0095D5A7 /* SoundManager.m */; };
+		E27E6DB31A3FFB4F0095D5A7 /* Start.wav in Resources */ = {isa = PBXBuildFile; fileRef = E27E6DB21A3FFB4F0095D5A7 /* Start.wav */; };
 		E2CEDFCC1A3652810018DB7D /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = E2CEDFCB1A3652810018DB7D /* GameState.m */; };
 		E2CEDFD01A3655D00018DB7D /* EndGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = E2CEDFCF1A3655D00018DB7D /* EndGameScene.m */; };
 /* End PBXBuildFile section */
@@ -65,9 +65,9 @@
 		E253B63D1A2ED69000C5F743 /* Basket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Basket.m; sourceTree = "<group>"; };
 		E27E6DA31A3FECC60095D5A7 /* BasketMade.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BasketMade.wav; sourceTree = "<group>"; };
 		E27E6DA41A3FECC60095D5A7 /* Death.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Death.wav; sourceTree = "<group>"; };
-		E27E6DA51A3FECC60095D5A7 /* Death2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Death2.wav; sourceTree = "<group>"; };
 		E27E6DAF1A3FF2AC0095D5A7 /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
 		E27E6DB01A3FF2AC0095D5A7 /* SoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundManager.m; sourceTree = "<group>"; };
+		E27E6DB21A3FFB4F0095D5A7 /* Start.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Start.wav; sourceTree = "<group>"; };
 		E2CEDFCA1A3652810018DB7D /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
 		E2CEDFCB1A3652810018DB7D /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameState.m; sourceTree = "<group>"; };
 		E2CEDFCE1A3655D00018DB7D /* EndGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndGameScene.h; sourceTree = "<group>"; };
@@ -135,9 +135,9 @@
 				4FFF88C51A12A11800283B80 /* Main.storyboard */,
 				4FFF88C81A12A11900283B80 /* Images.xcassets */,
 				4FFF88CA1A12A11900283B80 /* LaunchScreen.xib */,
+				E27E6DB21A3FFB4F0095D5A7 /* Start.wav */,
 				E27E6DA31A3FECC60095D5A7 /* BasketMade.wav */,
 				E27E6DA41A3FECC60095D5A7 /* Death.wav */,
-				E27E6DA51A3FECC60095D5A7 /* Death2.wav */,
 				4FFF88B61A12A11800283B80 /* Supporting Files */,
 			);
 			path = basketclimb;
@@ -255,9 +255,9 @@
 				E27E6DA61A3FECC60095D5A7 /* BasketMade.wav in Resources */,
 				4FFF88CC1A12A11900283B80 /* LaunchScreen.xib in Resources */,
 				4FFF88C91A12A11900283B80 /* Images.xcassets in Resources */,
+				E27E6DB31A3FFB4F0095D5A7 /* Start.wav in Resources */,
 				4FFF88C11A12A11800283B80 /* GameScene.sks in Resources */,
 				4FFF88C71A12A11800283B80 /* Main.storyboard in Resources */,
-				E27E6DA81A3FECC60095D5A7 /* Death2.wav in Resources */,
 				E27E6DA71A3FECC60095D5A7 /* Death.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
